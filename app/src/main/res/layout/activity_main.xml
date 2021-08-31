@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="top"
+    android:background="#F1F1F1"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
@@ -17,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="Roboto"
-            android:maxLines="1"
+            android:fontFamily="sans-serif"
             android:text="Country List"
+            android:textColor="#313131"
             android:textSize="32sp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -27,23 +28,27 @@
     <ImageView
         android:layout_width="133dp"
         android:layout_height="133dp"
-        android:foregroundGravity="center"
-        android:src="@drawable/ic_favpng_map_pin_m7r2vhn3_1"/>
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher_main_activity_earth_foreground" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="41dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Choose a card :)"
+        android:textColor="#000000"
+        android:textSize="44sp"
+        android:textStyle="bold" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Countries" />
-
-    </LinearLayout>
+        android:scrollbars="vertical">
 
 
-</RelativeLayout>
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>
