@@ -3,6 +3,8 @@ package com.example.countryapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,13 +15,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        textView = findViewById<TextView>(R.id.tv_pl_names)
-//        var names = listOf("Java","Kotlin","Ruby"," JS","C","C++","Lisp","adsasd",
-//        "asdasd","gdsgds","sdgfh")
-//
-//        textView.setText("")
-//        for (elem in names){
-//            textView.append("$elem \n")
-//        }
+        val countryList = ArrayList<Model>()
+
+        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
+        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
+        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
+        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
+        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
+
+        val recyclerView: RecyclerView = findViewById(R.id.rv_main_activity)
+        val countryAdapter = CountryAdapter(countryList, this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = countryAdapter
     }
 }
