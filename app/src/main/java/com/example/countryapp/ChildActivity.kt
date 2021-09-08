@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBar
 import com.example.countryapp.model.CountryModel
-import kotlinx.android.synthetic.main.activity_child.*
 
 class ChildActivity : AppCompatActivity() {
 
@@ -23,7 +22,7 @@ class ChildActivity : AppCompatActivity() {
 //        actionBar.setDisplayShowHomeEnabled(true)
 
         val countryName: TextView = findViewById(R.id.tv_child_activity_country)
-        val countryImage: ImageView = findViewById<ImageView>(R.id.iv_child_activity_country_flag)
+        val countryImage: TextView = findViewById(R.id.iv_child_activity_country_flag)
         val countryCapital: TextView = findViewById(R.id.tv_child_activity_capital)
         val countryRegion: TextView = findViewById(R.id.tv_child_activity_region)
         val countryPopulation : TextView = findViewById(R.id.tv_child_activity_population)
@@ -33,27 +32,31 @@ class ChildActivity : AppCompatActivity() {
         val countryCalling: TextView = findViewById(R.id.tv_child_activity_callingcodes)
 
         val intent = intent
-        val model = intent.getParcelableExtra<CountryModel>("model")
+        //val country = intent.getParcelableExtra<CountryListQuery.Country>("country")
+        val country = intent.getStringExtra("countryName")
+        val countryEmoji = intent.getStringExtra("countryEmoji")
 //        val intent = intent
 //        val name = intent.getStringExtra("countryName")
 
          //   countryName.setText(name)
-        countryName.setText(model!!.countryName)
-        countryImage.setImageResource(model.countryImage)
-        countryCapital.setText(model.countryCapital)
-        countryRegion.setText(model.countryRegion)
-        countryPopulation.setText(model.countryPopulation)
-        countryCurrencies.setText(model.countryCurrencies)
-        countryLanguage.setText(model.countryLanguage)
-        countryTimeZone.setText(model.countryTimeZone)
-        countryCalling.setText(model.countryCalling)
+
+        countryName.setText(country)
+        countryImage.setText(countryEmoji)
+//        countryImage.setImageResource(model.countryImage)
+//        countryCapital.setText(model.countryCapital)
+//        countryRegion.setText(model.countryRegion)
+//        countryPopulation.setText(model.countryPopulation)
+//        countryCurrencies.setText(model.countryCurrencies)
+//        countryLanguage.setText(model.countryLanguage)
+//        countryTimeZone.setText(model.countryTimeZone)
+//        countryCalling.setText(model.countryCalling)
 
 
         toolbar= findViewById(R.id.tb_child_activity)
         setSupportActionBar(toolbar)
-        if (getSupportActionBar() != null){
-            getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar()!!.setDisplayShowHomeEnabled(true);
+        if (supportActionBar != null){
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+            supportActionBar!!.setDisplayShowHomeEnabled(true);
         }
 
     }
@@ -63,7 +66,6 @@ class ChildActivity : AppCompatActivity() {
         if (item.itemId == android.R.id.home){
            finish()
         }
-
         return super.onOptionsItemSelected(item)
     }
 
