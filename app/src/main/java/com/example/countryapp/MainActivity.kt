@@ -2,6 +2,7 @@ package com.example.countryapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,16 +25,14 @@ class MainActivity : AppCompatActivity() {
         val context = this
         lifecycleScope.launchWhenResumed {
             val response = apolloClient.query(CountryListQuery()).await()
-
+            Log.d("Response","$response")
             // val countries = response.data?.countries?.filterNotNull()
             val countries = response.data?.countries
             println("test $countries")
                 val recyclerView: RecyclerView = findViewById(R.id.rv_main_activity)
                 val countryAdapter = countries?.let { CountryAdapter(it,context) }
                 recyclerView.adapter = countryAdapter
-            if (countryAdapter != null) {
-                countryAdapter.submitList(countries)
-            }
+                countryAdapter?.submitList(countries)
 
         }
 
