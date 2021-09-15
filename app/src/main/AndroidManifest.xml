@@ -12,6 +12,7 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.CountryApp"
+        android:largeHeap="true"
         >
         <activity
             android:name=".ChildActivity"

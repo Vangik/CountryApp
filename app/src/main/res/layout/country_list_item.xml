@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/iv_main_activity_country_flag"
-            android:layout_width="199dp"
+            android:layout_width="140dp"
             android:layout_height="130dp"
             android:layout_gravity="end"
             android:layout_marginLeft="25dp"

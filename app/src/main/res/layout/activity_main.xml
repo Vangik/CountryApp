@@ -1,56 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#F1F1F1"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <androidx.appcompat.widget.Toolbar
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/toolbarcolor">
+        android:background="#F1F1F1"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbarcolor">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="Country List"
+                android:textColor="#313131"
+                android:textSize="32sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:layout_width="133dp"
+            android:layout_height="133dp"
+            android:layout_gravity="center"
+            android:src="@drawable/earth" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="sans-serif"
-            android:text="Country List"
-            android:textColor="#313131"
-            android:textSize="32sp" />
+            android:layout_marginBottom="30dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="Choose a card :)"
+            android:textColor="#000000"
+            android:textSize="44sp"
+            android:textStyle="bold" />
 
-    </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:layout_width="133dp"
-        android:layout_height="133dp"
-        android:layout_gravity="center"
-        android:src="@drawable/earth" />
 
-    <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main_activity"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="sans-serif-thin"
-        android:text="Choose a card :)"
-        android:textColor="#000000"
-        android:textSize="44sp"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main_activity"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-
-</LinearLayout>
+</RelativeLayout>

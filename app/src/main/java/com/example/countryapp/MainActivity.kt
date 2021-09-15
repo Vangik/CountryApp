@@ -3,48 +3,52 @@ package com.example.countryapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.View
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
-import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.Response
-import com.apollographql.apollo.coroutines.await
+import com.apollographql.apollo.rx3.rxQuery
 import com.example.countryapp.adapter.CountryAdapter
-import com.example.countryapp.model.CountryModel
+import com.example.countryapp.model.CountryModelList
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.BackpressureStrategy
+import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.schedulers.Schedulers.io
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    var countryList: List<CountryListQuery.Country> = emptyList()
+    private val countryQuery = CountryModelList()
+    private var progressBar: ProgressBar? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val apolloClient =
-            ApolloClient.builder().serverUrl("https://countries.trevorblades.com").build()
 
-        val context = this
-        lifecycleScope.launchWhenResumed {
-            val response = apolloClient.query(CountryListQuery()).await()
-            Log.d("Response","$response")
-            // val countries = response.data?.countries?.filterNotNull()
-            val countries = response.data?.countries
-            println("test $countries")
-                val recyclerView: RecyclerView = findViewById(R.id.rv_main_activity)
-                val countryAdapter = countries?.let { CountryAdapter(it,context) }
-                recyclerView.adapter = countryAdapter
-                countryAdapter?.submitList(countries)
+        progressBar= findViewById<ProgressBar>(R.id.progressMain) as ProgressBar
+        progressBar?.visibility = View.VISIBLE
 
-        }
+        countryQuery.getCountryList().subscribeOn(io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ response->
+                response.data?.let { countryList = it.countries
+                    progressBar?.visibility = View.GONE
+                    val recyclerView: RecyclerView = findViewById(R.id.rv_main_activity)
+                    val countryAdapter = CountryAdapter(countryList, this)
+                    recyclerView.adapter = countryAdapter
+                    countryAdapter.submitList(countryList)
+                }
+            },{
 
+            },{
 
-//        var countryList = mutableListOf<CountryModel>()
-//
-//        countryList.add(CountryModel("Albania", R.drawable.ic_de, "Tirane", "Asia", "Albanian","Lorem ipsum","Lorem ipsum","Lorem ipsum","Lorem ipsum"))
-//        countryList.add(CountryModel("Algeria", R.drawable.ic_de, "Algiers", "Asia","Lorem ipsum","Lorem ipsum","Lorem ipsum","Lorem ipsum","Lorem ipsum"))
-//        countryList.add(CountryModel("Andorra", R.drawable.ic_de, "Andorra la Vella", "Asia","Lorem ipsum","Lorem ipsum","Lorem ipsum","Lorem ipsum","Lorem ipsum"))
-//        countryList.add(CountryModel("Angola", R.drawable.ic_de, "Luanda", "Asia","Lorem ipsum","Lorem ipsum","Lorem ipsum","Lorem ipsum","Lorem ipsum"))
+            })
 
+    }
 
-
+    private fun showCountryList(countryList: List<CountryListQuery.Country>) {
+        this.countryList = countryList
     }
 }
