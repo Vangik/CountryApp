@@ -17,11 +17,11 @@ class MainActivity : AppCompatActivity() {
 
         val countryList = ArrayList<Model>()
 
-        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
-        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
-        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
-        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
-        countryList.add(Model("Japan", R.mipmap.ic_launcher_country_flag_japan_foreground))
+        countryList.add(Model("Japan", ))
+        countryList.add(Model("Japan", ))
+        countryList.add(Model("Japan", ))
+        countryList.add(Model("Japan",))
+        countryList.add(Model("Japan", ))
 
         val recyclerView: RecyclerView = findViewById(R.id.rv_main_activity)
         val countryAdapter = CountryAdapter(countryList, this)
