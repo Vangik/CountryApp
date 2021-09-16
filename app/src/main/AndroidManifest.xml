@@ -15,14 +15,14 @@
         android:largeHeap="true"
         >
         <activity
-            android:name=".ChildActivity"
+            android:name=".childActivity.ChildActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
-            android:label=""
+            android:parentActivityName=".mainActivity.MainActivity"
+
             >
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".mainActivity.MainActivity"
             android:exported="true"
             >
             <intent-filter>
