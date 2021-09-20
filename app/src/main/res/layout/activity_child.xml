@@ -293,7 +293,7 @@
                 android:layout_marginEnd="24dp">
 
                 <TextView
-                    android:id="@+id/tvCapital"
+                    android:id="@+id/tvCountryCapital"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
@@ -314,7 +314,7 @@
                 android:textColor="@color/silver_chalice" />
 
             <TextView
-                android:id="@+id/tvRegion"
+                android:id="@+id/tvCountryRegion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -339,7 +339,7 @@
                 android:layout_marginEnd="24dp">
 
                 <TextView
-                    android:id="@+id/tvPopulation"
+                    android:id="@+id/tvCountryPopulation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
@@ -365,7 +365,7 @@
                 android:layout_marginEnd="24dp">
 
                 <LinearLayout
-                    android:id="@+id/llCurrencies"
+                    android:id="@+id/llCountryCurrencies"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -386,7 +386,7 @@
                 android:textColor="@color/silver_chalice" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvLanguage"
+                android:id="@+id/rvCountryLanguage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
@@ -403,7 +403,7 @@
                 android:textColor="@color/silver_chalice" />
 
             <TextView
-                android:id="@+id/tvTimeZone"
+                android:id="@+id/tvCountryTimeZone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -428,7 +428,7 @@
                 android:layout_marginEnd="24dp">
 
                 <LinearLayout
-                    android:id="@+id/llCallingCode"
+                    android:id="@+id/llCountryCallingCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">

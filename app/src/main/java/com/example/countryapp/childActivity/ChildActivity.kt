@@ -13,47 +13,53 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.*
 import com.example.countryapp.R
 import com.example.countryapp.childActivity.adapter.LanguageAdapter
+import com.example.countryapp.constants.CountryConst
+import com.example.countryapp.databinding.ActivityChildBinding
+import com.example.countryapp.model.CountryLanguage
 import com.example.countryapp.model.CountryModel
 import kotlinx.android.synthetic.main.activity_child.*
 
 class ChildActivity : AppCompatActivity() {
 
-    private lateinit var llcurrencies: LinearLayout
-    private lateinit var llcallingcode: LinearLayout
+    private lateinit var binding: ActivityChildBinding
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_child)
 
-        val test = listOf("aba", "aba", "aba", "aba", "aba", "aba", "aba")
-        val intent = intent.getSerializableExtra("c") as CountryModel
-        llcurrencies = findViewById(R.id.llCurrencies)
-        llcallingcode = findViewById(R.id.llCallingCode)
+        binding = ActivityChildBinding.inflate(layoutInflater)
+
+        val intent = intent.getSerializableExtra(CountryConst.Intent_Country_Details_Name) as CountryModel
+
         intent.apply {
-            tvCountryName.text = countryName
-            tvEmoji.text = countryImage
-            tvCapital.text = countryCapital ?: "No capital"
-            tvRegion.text = countryRegion
-            tvPopulation.text = countryPopulation
-            for (s in countryCurrencies ?: mutableListOf("No currencies")) setNewTextView(
-                llcurrencies,
+            binding.tvCountryName.text = countryName
+            binding.tvEmoji.text = countryImage
+            binding.tvCountryCapital.text = countryCapital
+            binding.tvCountryRegion.text = countryRegion
+            binding.tvCountryPopulation.text = countryPopulation
+            for (s in countryCurrencies ?: mutableListOf(CountryConst.Currency_Error)) setNewTextView(
+                binding.llCountryCurrencies,
                 s,
                 R.drawable.currencies_background
             )
-            tvTimeZone.text = "Will be added later ;)"
+            binding.tvCountryTimeZone.text = CountryConst.Future_Feature_Message
             for (s in countryCalling) setNewTextView(
-                llcallingcode,
+                binding.llCountryCallingCode,
                 s,
                 R.drawable.callingcodde_background
             )
         }
 
+        if (intent.countryLanguageList.isEmpty()) {
+            intent.countryLanguageList.add(CountryLanguage(CountryConst.Language_Error))
+        }
         val languageAdapter = LanguageAdapter(intent.countryLanguageList, this)
-        rvLanguage.adapter = languageAdapter
+        binding.rvCountryLanguage.adapter = languageAdapter
         languageAdapter.submitList(intent.countryLanguageList)
 
+        setContentView(binding.root)
         showToolBarBackArrow(tbChildActivity)
+
     }
 
     private fun showToolBarBackArrow(toolbar: Toolbar) {
@@ -77,7 +83,7 @@ class ChildActivity : AppCompatActivity() {
         val textView = TextView(this@ChildActivity)
         textView.setTextColor(resources.getColor(R.color.mine_shaft))
         textView.setBackgroundResource(backgroundColor)
-        textView.typeface = Typeface.create("sans-serif", Typeface.BOLD)
+        textView.typeface = Typeface.create(CountryConst.Main_Font, Typeface.BOLD)
         textView.setTextSize(
             TypedValue.COMPLEX_UNIT_PX,
             resources.getDimension(R.dimen.details_textsize)

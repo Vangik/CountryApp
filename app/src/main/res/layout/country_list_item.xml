@@ -11,7 +11,7 @@
         android:background="@drawable/countrycard_background">
 
         <TextView
-            android:id="@+id/iv_main_activity_country_flag"
+            android:id="@+id/tvFlag"
             android:layout_width="@dimen/emoji_width"
             android:layout_height="@dimen/emoji_height"
             android:layout_gravity="center"
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
+            android:layout_toEndOf="@id/tvFlag"
             android:fontFamily="sans-serif"
             android:text="@string/country_name_label"
             android:textColor="@color/scorpion"
@@ -35,12 +35,12 @@
 
 
         <TextView
-            android:id="@+id/tv_main_activity_country_name"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_main_activity_country_label_name"
             android:layout_gravity="center"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
+            android:layout_toEndOf="@id/tvFlag"
             android:fontFamily="sans-serif"
             android:paddingEnd="12dp"
             android:paddingStart="0dp"
@@ -55,20 +55,20 @@
             android:id="@+id/tv_main_activity_country_label_capital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_main_activity_country_name"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
+            android:layout_below="@id/tvName"
+            android:layout_toEndOf="@id/tvFlag"
             android:fontFamily="sans-serif"
             android:text="@string/country_name_label"
             android:textColor="@color/scorpion"
             android:textSize="@dimen/lable_textsize" />
 
         <TextView
-            android:id="@+id/tv_main_activity_country_capital"
+            android:id="@+id/tvCapital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_main_activity_country_label_capital"
             android:layout_gravity="end"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
+            android:layout_toEndOf="@id/tvFlag"
             android:fontFamily="sans-serif"
             android:textColor="@color/mine_shaft"
             android:textSize="@dimen/details_textsize"
@@ -78,21 +78,21 @@
             android:id="@+id/tv_main_activity_country_label_region"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_main_activity_country_capital"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
+            android:layout_below="@id/tvCapital"
+            android:layout_toEndOf="@id/tvFlag"
             android:fontFamily="sans-serif"
             android:text="@string/country_region_label"
             android:textColor="@color/scorpion"
             android:textSize="@dimen/lable_textsize" />
 
         <TextView
-            android:id="@+id/tv_main_activity_country_region"
+            android:id="@+id/tvRegion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_main_activity_country_label_region"
             android:layout_gravity="center"
             android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
+            android:layout_toEndOf="@id/tvFlag"
             android:fontFamily="sans-serif"
             android:textColor="@color/mine_shaft"
             android:textSize="@dimen/details_textsize"
