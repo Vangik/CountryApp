@@ -13,7 +13,7 @@
         android:paddingBottom="52dp">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_child_activity"
+            android:id="@+id/tbChildActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/straw"
@@ -37,11 +37,11 @@
             android:id="@+id/iv_child_activity_earth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tb_child_activity"
+            android:layout_below="@id/tbChildActivity"
             android:src="@drawable/earth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_child_activity"
+            app:layout_constraintTop_toBottomOf="@id/tbChildActivity"
             tools:ignore="ContentDescription" />
 
         <ImageView
@@ -51,12 +51,12 @@
             android:layout_marginTop="68dp"
             android:scaleType="centerCrop"
             android:src="@drawable/pngwing_1"
-            app:layout_constraintTop_toBottomOf="@id/tb_child_activity"
+            app:layout_constraintTop_toBottomOf="@id/tbChildActivity"
             tools:ignore="ContentDescription" />
 
 
         <TextView
-            android:id="@+id/iv_child_activity_country_flag"
+            android:id="@+id/tvEmoji"
             android:layout_width="@dimen/emoji_width"
             android:layout_height="@dimen/emoji_height"
             android:layout_marginHorizontal="40dp"
@@ -70,185 +70,187 @@
             android:id="@+id/iv_ellipse1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="12dp"
             android:src="@drawable/ellipse2"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_child_activity_country_flag" />
+            app:layout_constraintTop_toBottomOf="@id/tvEmoji"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_vector1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:paddingTop="8dp"
             android:src="@drawable/vector"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ellipse1" />
+            app:layout_constraintTop_toBottomOf="@id/iv_ellipse1"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_ellipse2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:src="@drawable/ellipse1"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vector1" />
+            app:layout_constraintTop_toBottomOf="@id/iv_vector1"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_vector2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:paddingTop="8dp"
             android:src="@drawable/vector"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ellipse2" />
+            app:layout_constraintTop_toBottomOf="@id/iv_ellipse2"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_ellipse3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:src="@drawable/ellipse2"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vector2" />
+            app:layout_constraintTop_toBottomOf="@id/iv_vector2"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_vector3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:paddingTop="8dp"
-            tools:ignore="ContentDescription"
             android:src="@drawable/vector"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ellipse3" />
+            app:layout_constraintTop_toBottomOf="@id/iv_ellipse3"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_ellipse4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:src="@drawable/ellipse1"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vector3" />
+            app:layout_constraintTop_toBottomOf="@id/iv_vector3"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_vector4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:paddingTop="8dp"
             android:src="@drawable/vector"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ellipse4" />
+            app:layout_constraintTop_toBottomOf="@id/iv_ellipse4"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_ellipse5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:src="@drawable/ellipse2"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vector4" />
+            app:layout_constraintTop_toBottomOf="@id/iv_vector4"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_vector5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:paddingTop="8dp"
             android:src="@drawable/vector"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ellipse5" />
+            app:layout_constraintTop_toBottomOf="@id/iv_ellipse5"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_ellipse6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:src="@drawable/ellipse1"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vector5" />
+            app:layout_constraintTop_toBottomOf="@id/iv_vector5"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_vector6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:paddingTop="8dp"
             android:src="@drawable/vector"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ellipse6" />
+            app:layout_constraintTop_toBottomOf="@id/iv_ellipse6"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_ellipse7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:src="@drawable/ellipse2"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vector6" />
+            app:layout_constraintTop_toBottomOf="@id/iv_vector6"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_vector7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:paddingTop="8dp"
             android:src="@drawable/vector"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ellipse7" />
+            app:layout_constraintTop_toBottomOf="@id/iv_ellipse7"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/iv_ellipse8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_child_activity_country_flag"
+            android:layout_below="@id/tvEmoji"
             android:layout_marginHorizontal="38dp"
             android:src="@drawable/ellipse1"
-            tools:ignore="ContentDescription"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vector7" />
+            app:layout_constraintTop_toBottomOf="@id/iv_vector7"
+            tools:ignore="ContentDescription" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="92dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="12dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_child_activity_country_flag">
+            app:layout_constraintTop_toBottomOf="@id/tvEmoji">
+
 
             <TextView
                 android:id="@+id/tv_child_activity_label_country"
@@ -258,15 +260,23 @@
                 android:text="@string/country_name_label"
                 android:textColor="@color/silver_chalice" />
 
-            <TextView
-                android:id="@+id/tv_child_activity_country"
-                android:layout_width="wrap_content"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:singleLine="true"
-                android:textColor="@color/mine_shaft"
-                android:textSize="@dimen/details_textsize"
-                android:textStyle="bold" />
+                android:layout_marginEnd="24dp">
+
+                <TextView
+                    android:id="@+id/tvCountryName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="@dimen/details_textsize"
+                    android:textStyle="bold" />
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/tv_child_activity_label_capital"
@@ -277,14 +287,22 @@
                 android:text="@string/country_capital_label"
                 android:textColor="@color/silver_chalice" />
 
-            <TextView
-                android:id="@+id/tv_child_activity_capital"
-                android:layout_width="wrap_content"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/mine_shaft"
-                android:textSize="@dimen/details_textsize"
-                android:textStyle="bold" />
+                android:layout_marginEnd="24dp">
+
+                <TextView
+                    android:id="@+id/tvCapital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="@dimen/details_textsize"
+                    android:textStyle="bold" />
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/tv_child_activity_label_region"
@@ -296,10 +314,12 @@
                 android:textColor="@color/silver_chalice" />
 
             <TextView
-                android:id="@+id/tv_child_activity_region"
+                android:id="@+id/tvRegion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
                 android:textColor="@color/mine_shaft"
                 android:textSize="@dimen/details_textsize"
                 android:textStyle="bold" />
@@ -313,25 +333,22 @@
                 android:text="@string/country_population_label"
                 android:textColor="@color/silver_chalice" />
 
-            <ScrollView
-                android:id="@+id/scrollView"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true"
-                android:scrollbars="horizontal"
-                tools:ignore="NestedScrolling">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp">
 
                 <TextView
-                    android:id="@+id/tv_child_activity_population"
+                    android:id="@+id/tvPopulation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
                     android:textColor="@color/mine_shaft"
                     android:textSize="@dimen/details_textsize"
                     android:textStyle="bold" />
-
-            </ScrollView>
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/tv_child_activity_label_currencies"
@@ -342,28 +359,37 @@
                 android:text="@string/country_currencies_label"
                 android:textColor="@color/silver_chalice" />
 
-            <TextView
-                android:id="@+id/tv_child_activity_currencies"
-                android:layout_width="wrap_content"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/mine_shaft"
-                android:textSize="@dimen/details_textsize"
-                android:textStyle="bold" />
+                android:layout_marginEnd="24dp">
+
+                <LinearLayout
+                    android:id="@+id/llCurrencies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/tv_child_activity_label_language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/country_language_label"
                 android:textColor="@color/silver_chalice" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_child_activity"
+                android:id="@+id/rvLanguage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -377,10 +403,12 @@
                 android:textColor="@color/silver_chalice" />
 
             <TextView
-                android:id="@+id/tv_child_activity_timezone"
+                android:id="@+id/tvTimeZone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
                 android:textColor="@color/mine_shaft"
                 android:textSize="@dimen/details_textsize"
                 android:textStyle="bold" />
@@ -394,16 +422,23 @@
                 android:text="@string/country_calling_code_label"
                 android:textColor="@color/silver_chalice" />
 
-            <TextView
-                android:id="@+id/tv_child_activity_callingcodes"
-                android:layout_width="wrap_content"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/mine_shaft"
-                android:textSize="@dimen/details_textsize"
-                android:paddingHorizontal="@dimen/short_backdown"
-                android:background="@drawable/callingcodde_background"
-                android:textStyle="bold" />
+                android:layout_marginEnd="24dp">
+
+                <LinearLayout
+                    android:id="@+id/llCallingCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
 
         </LinearLayout>

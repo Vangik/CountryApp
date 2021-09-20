@@ -13,7 +13,7 @@ import com.example.countryapp.R
 import com.example.countryapp.model.CountryModel
 
 
-class CountryAdapter(val countryList: MutableList<CountryModel>, val context: Context) :
+class CountryAdapter(private val countryList: MutableList<CountryModel>, private val context: Context) :
     ListAdapter<CountryModel, CountryAdapter.CountryViewHolder>(CountryDiffUtilCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val inflater =
@@ -22,7 +22,7 @@ class CountryAdapter(val countryList: MutableList<CountryModel>, val context: Co
     }
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-        val country = countryList.get(position)
+        val country = countryList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
             val country = countryList[position]

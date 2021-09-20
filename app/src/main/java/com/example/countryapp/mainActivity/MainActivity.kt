@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import com.example.countryapp.R
 import com.example.countryapp.mainActivity.adapter.CountryAdapter
 import com.example.countryapp.model.CountryApolloAccess
@@ -13,6 +12,7 @@ import com.example.countryapp.model.CountryLanguage
 import com.example.countryapp.model.CountryModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers.io
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,8 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
-        progressBar = findViewById<ProgressBar>(R.id.progressMain) as ProgressBar
+        progressBar = findViewById(R.id.progressMain)
         progressBar?.visibility = View.VISIBLE
 
         countryQuery.getCountryList().subscribeOn(io())
@@ -39,10 +38,10 @@ class MainActivity : AppCompatActivity() {
                         CountryModel(
                             country.name,
                             country.emoji,
-                            country.capital,
+                            country.capital?:"No capital",
                             country.continent.name,
                             country.native_,
-                            country.currency,
+                            country.currency?.split(",")?.toMutableList(),
                             countryLanguageList = countryLanguageList.apply {
                                 country.languages.forEach { language ->
                                     add(
@@ -50,21 +49,21 @@ class MainActivity : AppCompatActivity() {
                                     )
                                 }
                             },
-                            country.phone
+                             country.phone.split(",").toMutableList()
                         )
 
                     )
 
                 }
 
-                val recyclerView: RecyclerView = findViewById(R.id.rv_main_activity)
+
                 val countryAdapter = CountryAdapter(countryList, this)
-                recyclerView.adapter = countryAdapter
+                rvMainActivity.adapter = countryAdapter
                 countryAdapter.submitList(countryList)
 
             },
                 {
-                    Toast.makeText(this, "Check you internet connection", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, "Check you internet connection", Toast.LENGTH_SHORT).show()
                 },
                 {
                     progressBar?.visibility = View.GONE

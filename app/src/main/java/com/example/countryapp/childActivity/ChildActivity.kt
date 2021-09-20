@@ -1,60 +1,68 @@
 package com.example.countryapp.childActivity
 
+import android.annotation.SuppressLint
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.MenuItem
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.view.*
 import com.example.countryapp.R
 import com.example.countryapp.childActivity.adapter.LanguageAdapter
 import com.example.countryapp.model.CountryModel
-import org.intellij.lang.annotations.Language
+import kotlinx.android.synthetic.main.activity_child.*
 
 class ChildActivity : AppCompatActivity() {
 
-    private val tvName: TextView by lazy { findViewById(R.id.tv_child_activity_country) }
-    private val tvImage: TextView by lazy { findViewById(R.id.iv_child_activity_country_flag) }
-    private val tvCapital: TextView by lazy { findViewById(R.id.tv_child_activity_capital) }
-    private val tvRegion: TextView by lazy { findViewById(R.id.tv_child_activity_region) }
-    private val tvPopulation: TextView by lazy { findViewById(R.id.tv_child_activity_population) }
-    private val tvCurrencies: TextView by lazy { findViewById(R.id.tv_child_activity_currencies) }
-    private val tvTimeZone: TextView by lazy { findViewById(R.id.tv_child_activity_timezone) }
-    private val tvCalling: TextView by lazy { findViewById(R.id.tv_child_activity_callingcodes) }
-    private val toolbar: Toolbar by lazy { findViewById(R.id.tb_child_activity) }
+    private lateinit var llcurrencies: LinearLayout
+    private lateinit var llcallingcode: LinearLayout
 
-
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_child)
 
-
+        val test = listOf("aba", "aba", "aba", "aba", "aba", "aba", "aba")
         val intent = intent.getSerializableExtra("c") as CountryModel
+        llcurrencies = findViewById(R.id.llCurrencies)
+        llcallingcode = findViewById(R.id.llCallingCode)
         intent.apply {
-            tvName.text = countryName
-            tvImage.text = countryImage
+            tvCountryName.text = countryName
+            tvEmoji.text = countryImage
             tvCapital.text = countryCapital ?: "No capital"
             tvRegion.text = countryRegion
             tvPopulation.text = countryPopulation
-            tvCurrencies.text = countryCurrencies ?: "No currencies"
+            for (s in countryCurrencies ?: mutableListOf("No currencies")) setNewTextView(
+                llcurrencies,
+                s,
+                R.drawable.currencies_background
+            )
             tvTimeZone.text = "Will be added later ;)"
-            tvCalling.text = countryCalling
+            for (s in countryCalling) setNewTextView(
+                llcallingcode,
+                s,
+                R.drawable.callingcodde_background
+            )
         }
-        val recyclerView: RecyclerView = findViewById(R.id.rv_child_activity)
+
         val languageAdapter = LanguageAdapter(intent.countryLanguageList, this)
-        recyclerView.adapter = languageAdapter
+        rvLanguage.adapter = languageAdapter
         languageAdapter.submitList(intent.countryLanguageList)
 
-        showToolBarBackArrow(toolbar)
+        showToolBarBackArrow(tbChildActivity)
     }
 
     private fun showToolBarBackArrow(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
-        supportActionBar?.title = ""
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true);
-            supportActionBar!!.setDisplayShowHomeEnabled(true);
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            this.title = ""
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -63,6 +71,27 @@ class ChildActivity : AppCompatActivity() {
             finish()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setNewTextView(llcurrencies: LinearLayout, text: String, backgroundColor: Int) {
+        val textView = TextView(this@ChildActivity)
+        textView.setTextColor(resources.getColor(R.color.mine_shaft))
+        textView.setBackgroundResource(backgroundColor)
+        textView.typeface = Typeface.create("sans-serif", Typeface.BOLD)
+        textView.setTextSize(
+            TypedValue.COMPLEX_UNIT_PX,
+            resources.getDimension(R.dimen.details_textsize)
+        )
+        textView.setPadding(12, 0, 12, 0)
+        textView.text = text
+        val params = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT,
+            RelativeLayout.LayoutParams.WRAP_CONTENT
+        )
+        params.setMargins(0, 0, 8, 0)
+        textView.layoutParams = params
+
+        llcurrencies.addView(textView)
     }
 
 }

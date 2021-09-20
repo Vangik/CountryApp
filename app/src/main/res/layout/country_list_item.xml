@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#E5E5E5">
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,6 +33,7 @@
             android:textSize="@dimen/lable_textsize" />
 
 
+
         <TextView
             android:id="@+id/tv_main_activity_country_name"
             android:layout_width="wrap_content"
@@ -43,10 +43,13 @@
             android:layout_toEndOf="@id/iv_main_activity_country_flag"
             android:fontFamily="sans-serif"
             android:paddingEnd="12dp"
-            android:singleLine="true"
+            android:paddingStart="0dp"
+            android:maxLines="1"
+            android:ellipsize="marquee"
             android:textColor="@color/mine_shaft"
             android:textSize="@dimen/coutnry_title_textsize"
             android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/tv_main_activity_country_label_capital"

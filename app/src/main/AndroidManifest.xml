@@ -2,34 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.countryapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/earth"
-        android:roundIcon="@drawable/earth"
         android:label="CountryApp"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/earth"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CountryApp"
-        android:largeHeap="true"
-        >
+        android:theme="@style/Theme.CountryApp">
         <activity
             android:name=".childActivity.ChildActivity"
             android:exported="true"
-            android:parentActivityName=".mainActivity.MainActivity"
-
-            >
+            android:parentActivityName=".mainActivity.MainActivity">
         </activity>
+
         <activity
             android:name=".mainActivity.MainActivity"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
