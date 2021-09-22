@@ -16,8 +16,7 @@
         <activity
             android:name=".childActivity.ChildActivity"
             android:exported="true"
-            android:parentActivityName=".mainActivity.MainActivity">
-        </activity>
+            android:parentActivityName=".mainActivity.MainActivity"></activity>
 
         <activity
             android:name=".mainActivity.MainActivity"

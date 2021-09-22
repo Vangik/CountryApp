@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextView" parent="Theme.CountryApp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+
+    <style name="TextView.Font">
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textColor">@color/mine_shaft</item>
+        <item name="android:textSize">@dimen/details_textsize</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.Font.MainActivityTop">
+        <item name="android:layout_gravity">center</item>
+        <item name="fontFamily">sans-serif-thin</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/call_textsize</item>
+    </style>
+
+    <style name="TextView.Font.Title">
+        <item name="android:textSize">@dimen/coutnry_title_textsize</item>
+    </style>
+
+    <style name="TextView.Font.Label">
+        <item name="android:textColor">@color/scorpion</item>
+        <item name="android:textSize">@dimen/lable_textsize</item>
+        <item name="android:layout_gravity">start</item>
+    </style>
+
+    <style name="TextView.Font.Label.Details">
+        <item name="android:textColor">@color/silver_chalice</item>
+    </style>
+
+    <style name="TextView.Font.LanguageBackGround">
+        <item name="android:background">@drawable/language_background</item>
+    </style>
+
+    <style name="TextView.ToolBar">
+        <item name="android:textSize">@dimen/toolbar_textsize</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="TextView.ToolBar.Background">
+        <item name="android:background">@color/straw</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Emoji">
+        <item name="android:layout_width">@dimen/emoji_width</item>
+        <item name="android:layout_height">@dimen/emoji_height</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:textColor">@color/mine_shaft</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="Emoji.Details">
+        <item name="android:layout_width">@dimen/emoji_detail_width</item>
+        <item name="android:layout_height">@dimen/emoji_detail_height</item>
+    </style>
+
+    <style name="LayoutSize">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">24dp</item>
+    </style>
+
+    <style name="LayoutSize.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="LayoutSize.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TextView.EllipseMargin">
+        <item name="android:layout_marginStart">38dp</item>
+        <item name="android:layout_marginEnd">38dp</item>
+    </style>
+
+    <style name="TextView.EllipseMargin.Vector">
+        <item name="android:src">@drawable/vector</item>
+        <item name="android:paddingTop">8dp</item>
+    </style>
+
+    <style name="TextView.EllipseMargin.First">
+        <item name="android:src">@drawable/ellipse1</item>
+    </style>
+
+    <style name="TextView.EllipseMargin.Second">
+        <item name="android:src">@drawable/ellipse2</item>
+    </style>
+</resources>
