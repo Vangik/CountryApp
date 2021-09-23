@@ -18,7 +18,7 @@ class LanguageAdapter(
         private val context: Context
 ) :
         ListAdapter<CountryLanguage, LanguageAdapter.LanguageViewHolder>(LanguageDiffUtilCallback()) {
-
+    
     init {
         if (languageList.isEmpty()) {
             languageList.add(CountryLanguage(CountryConst.LANGUAGE_ERROR))
@@ -32,7 +32,7 @@ class LanguageAdapter(
 
 
     override fun onBindViewHolder(holder: LanguageViewHolder, position: Int) {
-
+        if (languageList.isEmpty()){println("Empty")}
         val language = languageList[position]
         holder.bindItems(language)
     }

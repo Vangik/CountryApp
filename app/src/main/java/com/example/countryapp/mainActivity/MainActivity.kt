@@ -6,18 +6,20 @@ import android.widget.Toast
 import com.example.countryapp.CountryListQuery
 import com.example.countryapp.ViewBindingActivity
 import com.example.countryapp.mainActivity.adapter.CountryAdapter
-import com.example.countryapp.model.CountryDbImpl
+import com.example.countryapp.model.DbImpl.CountryDbImpl
 import com.example.countryapp.model.CountryLanguage
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.constants.CountryConst
 import com.example.countryapp.databinding.ActivityMainBinding
+import com.example.countryapp.di.DaggerAppComponent
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers.io
+import javax.inject.Inject
 
 
 class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
-    private val countryQuery = CountryDbImpl()
+    @Inject lateinit var countryQuery: CountryDbImpl
     private val countryList: MutableList<CountryModel> = mutableListOf()
 
 
@@ -51,6 +53,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
     }
 
     override fun setup(): Unit = with(binding) {
+        DaggerAppComponent.create().inject(this@MainActivity)
         pbMainActivity.visibility = View.VISIBLE
         countryQuery.getCountryList().subscribeOn(io())
                 .observeOn(
