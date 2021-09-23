@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -33,27 +32,40 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
             setBackgroundResource(backgroundColor)
             typeface = Typeface.create(CountryConst.MAIN_FONT, Typeface.BOLD)
             setTextSize(
-                    TypedValue.COMPLEX_UNIT_PX,
-                    resources.getDimension(R.dimen.details_textsize)
+                TypedValue.COMPLEX_UNIT_PX,
+                resources.getDimension(R.dimen.details_textsize)
             )
-            setPadding(12, 0, 12, 0)
+            with(resources) {
+                setPadding(
+                    getDimensionPixelSize(R.dimen.country_details_item_padding),
+                    getDimensionPixelSize(R.dimen.zero_padding),
+                    getDimensionPixelSize(R.dimen.country_details_item_padding),
+                    getDimensionPixelSize(R.dimen.zero_padding)
+                )
+            }
             setText(text)
             RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                setMargins(0, 0, 8, 0)
+                with(resources) {
+                    setMargins(
+                        getDimensionPixelSize(R.dimen.zero_padding),
+                        getDimensionPixelSize(R.dimen.zero_padding),
+                        getDimensionPixelSize(R.dimen.country_details_item_margin),
+                        getDimensionPixelSize(R.dimen.zero_padding)
+                    )
+                }
                 layoutParams = this
             }
             llcurrencies.addView(this)
         }
     }
 
-    override val bindingInflater: (LayoutInflater) -> ActivityChildBinding = ActivityChildBinding::inflate
 
     override fun setup() = with(binding) {
         val intent =
-                intent.getSerializableExtra(CountryConst.INTENT_COUNTRY_DETAILS_NAME) as CountryModel
+            intent.getSerializableExtra(CountryConst.INTENT_COUNTRY_DETAILS_NAME) as CountryModel
 
         intent.apply {
             tvChildActivityCountryName.text = countryName
@@ -61,31 +73,32 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
             tvChildActivityCountryCapital.text = countryCapital
             tvChildActivityCountryRegion.text = countryRegion
             tvChildActivityCountryPopulation.text = countryPopulation
-            countryCurrencies.isListNullorEmpty(CountryConst.CURRENCY_ERROR).forEach { setNewTextView(llChildActivityCountryCurrencies, it, R.drawable.currencies_background) }
+            countryCurrencies.getList(CountryConst.CURRENCY_ERROR).forEach {
+                setNewTextView(
+                    llChildActivityCountryCurrencies,
+                    it,
+                    R.drawable.currencies_background
+                )
+            }
 
             tvChildActivityCountryTimeZone.text = CountryConst.FUTURE_FEATURE_MESSAGE
             countryCalling.forEach {
                 setNewTextView(
-                        llChildActivityCountryCallingCode,
-                        it,
-                        R.drawable.callingcodde_background
+                    llChildActivityCountryCallingCode,
+                    it,
+                    R.drawable.callingcodde_background
                 )
             }
         }
 
-
         val languageAdapter = LanguageAdapter(intent.countryLanguageList, this@ChildActivity)
         rvChildActivityCountryLanguage.adapter = languageAdapter
         languageAdapter.submitList(intent.countryLanguageList)
-
         showToolBarBackArrow(tb_child_activity)
     }
 
-    private fun MutableList<String>?.isListNullorEmpty(text: String): MutableList<String> {
-        return if (this.isNullOrEmpty()) {
-            mutableListOf(text)
-        } else this
-    }
+    private fun MutableList<String>?.getList(text: String) = if (this.isNullOrEmpty()) { mutableListOf(text) } else this
+
 
     private fun showToolBarBackArrow(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
@@ -101,5 +114,7 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun getViewBinding() = ActivityChildBinding.inflate(layoutInflater)
 
 }

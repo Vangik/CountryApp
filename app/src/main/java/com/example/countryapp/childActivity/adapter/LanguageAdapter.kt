@@ -13,11 +13,8 @@ import com.example.countryapp.databinding.LanguageDetailsBinding
 import com.example.countryapp.model.CountryLanguage
 import kotlinx.android.synthetic.main.language_details.view.*
 
-class LanguageAdapter(
-        private val languageList: MutableList<CountryLanguage>,
-        private val context: Context
-) :
-        ListAdapter<CountryLanguage, LanguageAdapter.LanguageViewHolder>(LanguageDiffUtilCallback()) {
+class LanguageAdapter(private val languageList: MutableList<CountryLanguage>, private val context: Context) :
+    ListAdapter<CountryLanguage, LanguageAdapter.LanguageViewHolder>(LanguageDiffUtilCallback()) {
 
     init {
         if (languageList.isEmpty()) {
@@ -32,15 +29,12 @@ class LanguageAdapter(
 
 
     override fun onBindViewHolder(holder: LanguageViewHolder, position: Int) {
-
         val language = languageList[position]
         holder.bindItems(language)
     }
 
 
-    class LanguageViewHolder(itemView: LanguageDetailsBinding) :
-            RecyclerView.ViewHolder(itemView.root) {
-
+    class LanguageViewHolder(itemView: LanguageDetailsBinding) : RecyclerView.ViewHolder(itemView.root) {
         fun bindItems(language: CountryLanguage) {
             itemView.tv_child_activity_language_item.text = language.language
         }

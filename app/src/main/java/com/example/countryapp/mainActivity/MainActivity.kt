@@ -1,6 +1,5 @@
 package com.example.countryapp.mainActivity
 
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.example.countryapp.CountryListQuery
@@ -20,24 +19,23 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
     private val countryQuery = CountryDbImpl()
     private val countryList: MutableList<CountryModel> = mutableListOf()
 
-
     private fun parseResponse(list: List<CountryListQuery.Country>?): MutableList<CountryModel> {
         list?.forEach { country ->
             val countryLanguageList: MutableList<CountryLanguage> = mutableListOf()
             countryList.add(with(country) {
                 CountryModel(
-                        name,
-                        emoji,
-                        capital ?: com.example.countryapp.constants.CountryConst.CAPITAL_ERROR,
-                        continent.name,
-                        native_,
-                        currency?.split(",")?.toMutableList(),
-                        countryLanguageList = countryLanguageList.apply {
-                            country.languages.forEach { language ->
-                                add(CountryLanguage(language.name))
-                            }
-                        },
-                        country.phone.split(",").toMutableList()
+                    name,
+                    emoji,
+                    capital ?:CountryConst.CAPITAL_ERROR,
+                    continent.name,
+                    native_,
+                    currency?.split(" ")?.toMutableList(),
+                    countryLanguageList = countryLanguageList.apply {
+                        country.languages.forEach { language ->
+                            add(CountryLanguage(language.name))
+                        }
+                    },
+                    country.phone.split(",").toMutableList()
                 )
             })
         }
@@ -53,24 +51,21 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
     override fun setup(): Unit = with(binding) {
         pbMainActivity.visibility = View.VISIBLE
         countryQuery.getCountryList().subscribeOn(io())
-                .observeOn(
-                        AndroidSchedulers.mainThread()
-                )
-                .subscribe(
-                        {
-                            parseResponse(it.data?.countries)
-                            setRecyclerView()
-                        },
-                        {
-                            Toast.makeText(this@MainActivity, CountryConst.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
-                        },
-                        {
-                            pbMainActivity.visibility = View.GONE
-                        }
-                )
-
-
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                parseResponse(it.data?.countries)
+                setRecyclerView()
+                },{
+                    Toast.makeText(
+                        this@MainActivity,
+                        CountryConst.ERROR_MESSAGE,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                },{
+                    pbMainActivity.visibility = View.GONE
+                })
     }
 
-    override val bindingInflater: (LayoutInflater) -> ActivityMainBinding = ActivityMainBinding::inflate
+    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
+
 }
