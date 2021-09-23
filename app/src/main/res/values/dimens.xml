@@ -11,4 +11,7 @@
     <dimen name="emoji_height">132dp</dimen>
     <dimen name="lable_textsize">12sp</dimen>
     <dimen name="coutnry_title_textsize">32sp</dimen>
+    <dimen name="zero_padding">0dp</dimen>
+    <dimen name="country_details_item_padding">4dp</dimen>
+    <dimen name="country_details_item_margin">4dp</dimen>
 </resources>

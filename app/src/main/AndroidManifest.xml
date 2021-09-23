@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".application.CountryApplication"
         android:allowBackup="true"
         android:icon="@drawable/earth"
         android:label="CountryApp"
@@ -13,10 +14,12 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.CountryApp">
+
         <activity
             android:name=".childActivity.ChildActivity"
             android:exported="true"
-            android:parentActivityName=".mainActivity.MainActivity"></activity>
+            android:parentActivityName=".mainActivity.MainActivity">
+        </activity>
 
         <activity
             android:name=".mainActivity.MainActivity"

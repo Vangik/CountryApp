@@ -14,8 +14,7 @@ import kotlinx.android.synthetic.main.country_list_item.view.*
 
 
 class CountryAdapter(
-        private val countryList: MutableList<CountryModel>,
-        private val context: Context
+    private val countryList: MutableList<CountryModel>, private val context: Context
 ) : ListAdapter<CountryModel, CountryAdapter.CountryViewHolder>(CountryDiffUtilCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val inflater = CountryListItemBinding.inflate(LayoutInflater.from(context), parent, false)
@@ -35,13 +34,14 @@ class CountryAdapter(
 
 
     inner class CountryViewHolder(itemView: CountryListItemBinding) :
-            RecyclerView.ViewHolder(itemView.root) {
+        RecyclerView.ViewHolder(itemView.root) {
         fun bindItems(country: CountryModel) {
-            itemView.tv_main_activity_country_name.text = country.countryName
-            itemView.tv_main_activity_country_emoji.text = country.countryImage
-            itemView.tv_main_activity_country_capital.text = country.countryCapital
-            itemView.tv_main_activity_country_region.text = country.countryRegion
-
+            with(itemView) {
+                tv_main_activity_country_name.text = country.countryName
+                tv_main_activity_country_emoji.text = country.countryImage
+                tv_main_activity_country_capital.text = country.countryCapital
+                tv_main_activity_country_region.text = country.countryRegion
+            }
         }
     }
 
