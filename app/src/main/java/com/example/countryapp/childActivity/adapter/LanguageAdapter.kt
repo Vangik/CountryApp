@@ -18,7 +18,7 @@ class LanguageAdapter(
         private val context: Context
 ) :
         ListAdapter<CountryLanguage, LanguageAdapter.LanguageViewHolder>(LanguageDiffUtilCallback()) {
-    
+
     init {
         if (languageList.isEmpty()) {
             languageList.add(CountryLanguage(CountryConst.LANGUAGE_ERROR))
