@@ -1,19 +1,19 @@
 package com.example.countryapp.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 
-@Parcelize
-data class CountryModel (
-    val countryName: String,
-    val countryImage: Int,
-    val countryCapital: String,
-    val countryRegion: String,
-    val countryPopulation : String,
-    val countryCurrencies : String,
-    val countryLanguage: String,
-    val countryTimeZone: String,
-    val countryCalling: String
-) : Parcelable
 
+data class CountryModel(
+    val countryName: String,
+    val countryImage: String,
+    val countryCapital: String?,
+    val countryRegion: String,
+    val countryPopulation: String,
+    val countryCurrencies: MutableList<String>?,
+    val countryLanguageList: MutableList<CountryLanguage>,
+    val countryCalling: MutableList <String>
+) : Serializable
+
+data class CountryLanguage(
+    val language: String?
+):Serializable

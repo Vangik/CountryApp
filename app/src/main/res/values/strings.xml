@@ -1,4 +1,13 @@
 <resources>
-    <string name="app_name">Country List</string>
     <string name="the_list_will_be_here">The list will be here!!!</string>
+    <string name="toolbar_text">Country List</string>
+    <string name="call_text">Choose a card :)</string>
+    <string name="country_name_label">Country</string>
+    <string name="country_capital_label">Capital</string>
+    <string name="country_region_label">Region</string>
+    <string name="country_population_label">Native</string>
+    <string name="country_currencies_label">Currencies</string>
+    <string name="country_language_label">Official Languages</string>
+    <string name="country_time_label">Time zone</string>
+    <string name="country_calling_code_label">Calling Codes</string>
 </resources>

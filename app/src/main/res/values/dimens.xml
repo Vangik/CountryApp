@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="earth_size">132dp</dimen>
+    <dimen name="toolbar_textsize">32sp</dimen>
+    <dimen name="call_textsize">44sp</dimen>
+    <dimen name="details_textsize">20sp</dimen>
+    <dimen name="emoji_detail_width">128dp</dimen>
+    <dimen name="emoji_detail_height">72dp</dimen>
+    <dimen name="short_backdown">4dp</dimen>
+    <dimen name="emoji_width">140dp</dimen>
+    <dimen name="emoji_height">132dp</dimen>
+    <dimen name="lable_textsize">12sp</dimen>
+    <dimen name="coutnry_title_textsize">32sp</dimen>
+</resources>
