@@ -57,16 +57,16 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
             .subscribe({
                 parseResponse(it.data?.countries)
                 setRecyclerView()
-            },{
+                },{
                 Toast.makeText(
                     this@MainActivity,
                     CountryConst.ERROR_MESSAGE,
                     Toast.LENGTH_SHORT
                 ).show()
-            },{
+               },{
                 pbMainActivity.visibility = View.GONE
-            })
-    }
+              })
+    }  
 
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
