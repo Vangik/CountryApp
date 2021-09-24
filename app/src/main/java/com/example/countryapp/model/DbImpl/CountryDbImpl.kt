@@ -1,15 +1,14 @@
-package com.example.countryapp.model
+package com.example.countryapp.model.DbImpl
 
 import com.apollographql.apollo.ApolloClient
 import com.example.countryapp.CountryListQuery
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.rx3.rxQuery
+import com.example.countryapp.model.CountryDb
 import io.reactivex.rxjava3.core.Observable
+import javax.inject.Inject
 
-class CountryDbImpl(
-        private var apolloClient: ApolloClient = ApolloClient.builder()
-                .serverUrl(URL).build()
-) : CountryDb {
+class CountryDbImpl @Inject constructor(private val apolloClient: ApolloClient) : CountryDb {
 
     override fun getCountryList(): Observable<Response<CountryListQuery.Data>> {
         return apolloClient.rxQuery(CountryListQuery())

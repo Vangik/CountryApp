@@ -4,19 +4,21 @@ import android.view.View
 import android.widget.Toast
 import com.example.countryapp.CountryListQuery
 import com.example.countryapp.ViewBindingActivity
+import com.example.countryapp.application.CountryApplication
 import com.example.countryapp.mainActivity.adapter.CountryAdapter
-import com.example.countryapp.model.CountryDbImpl
+import com.example.countryapp.model.DbImpl.CountryDbImpl
 import com.example.countryapp.model.CountryLanguage
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.constants.CountryConst
 import com.example.countryapp.databinding.ActivityMainBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers.io
+import javax.inject.Inject
 
 
 class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
-    private val countryQuery = CountryDbImpl()
+    @Inject lateinit var countryQuery: CountryDbImpl
     private val countryList: MutableList<CountryModel> = mutableListOf()
 
     private fun parseResponse(list: List<CountryListQuery.Country>?): MutableList<CountryModel> {
@@ -26,7 +28,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
                 CountryModel(
                     name,
                     emoji,
-                    capital ?:CountryConst.CAPITAL_ERROR,
+                    capital ?: CountryConst.CAPITAL_ERROR,
                     continent.name,
                     native_,
                     currency?.split(" ")?.toMutableList(),
@@ -56,15 +58,15 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
                 parseResponse(it.data?.countries)
                 setRecyclerView()
                 },{
-                    Toast.makeText(
-                        this@MainActivity,
-                        CountryConst.ERROR_MESSAGE,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                },{
-                    pbMainActivity.visibility = View.GONE
-                })
-    }
+                Toast.makeText(
+                    this@MainActivity,
+                    CountryConst.ERROR_MESSAGE,
+                    Toast.LENGTH_SHORT
+                ).show()
+               },{
+                pbMainActivity.visibility = View.GONE
+              })
+    }  
 
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
