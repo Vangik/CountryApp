@@ -11,91 +11,55 @@
         android:background="@drawable/countrycard_background">
 
         <TextView
-            android:id="@+id/iv_main_activity_country_flag"
-            android:layout_width="@dimen/emoji_width"
-            android:layout_height="@dimen/emoji_height"
-            android:layout_gravity="center"
+            android:id="@+id/tv_main_activity_country_emoji"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
-            android:autoSizeTextType="uniform"
-            android:scaleType="centerCrop" />
+            style="@style/Emoji"/>
 
         <TextView
             android:id="@+id/tv_main_activity_country_label_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Font.Label"
             android:layout_marginTop="12dp"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
-            android:fontFamily="sans-serif"
-            android:text="@string/country_name_label"
-            android:textColor="@color/scorpion"
-            android:textSize="@dimen/lable_textsize" />
-
-
+            android:layout_toEndOf="@id/tv_main_activity_country_emoji"
+            android:text="@string/country_name_label" />
 
         <TextView
             android:id="@+id/tv_main_activity_country_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Font.Title"
             android:layout_below="@id/tv_main_activity_country_label_name"
-            android:layout_gravity="center"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
-            android:fontFamily="sans-serif"
-            android:paddingEnd="12dp"
-            android:paddingStart="0dp"
-            android:maxLines="1"
+            android:layout_toEndOf="@id/tv_main_activity_country_emoji"
             android:ellipsize="marquee"
-            android:textColor="@color/mine_shaft"
-            android:textSize="@dimen/coutnry_title_textsize"
-            android:textStyle="bold" />
+            android:maxLines="1"
+            android:paddingStart="0dp"
+            android:paddingEnd="12dp" />
 
 
         <TextView
             android:id="@+id/tv_main_activity_country_label_capital"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Font.Label"
             android:layout_below="@id/tv_main_activity_country_name"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
-            android:fontFamily="sans-serif"
-            android:text="@string/country_name_label"
-            android:textColor="@color/scorpion"
-            android:textSize="@dimen/lable_textsize" />
+            android:layout_toEndOf="@id/tv_main_activity_country_emoji"
+            android:text="@string/country_name_label" />
 
         <TextView
             android:id="@+id/tv_main_activity_country_capital"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Font"
             android:layout_below="@id/tv_main_activity_country_label_capital"
-            android:layout_gravity="end"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/mine_shaft"
-            android:textSize="@dimen/details_textsize"
-            android:textStyle="bold" />
+            android:layout_toEndOf="@id/tv_main_activity_country_emoji" />
 
         <TextView
             android:id="@+id/tv_main_activity_country_label_region"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Font.Label"
             android:layout_below="@id/tv_main_activity_country_capital"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
-            android:fontFamily="sans-serif"
-            android:text="@string/country_region_label"
-            android:textColor="@color/scorpion"
-            android:textSize="@dimen/lable_textsize" />
+            android:layout_toEndOf="@id/tv_main_activity_country_emoji"
+            android:text="@string/country_region_label" />
 
         <TextView
             android:id="@+id/tv_main_activity_country_region"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Font"
             android:layout_below="@id/tv_main_activity_country_label_region"
-            android:layout_gravity="center"
             android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@id/iv_main_activity_country_flag"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/mine_shaft"
-            android:textSize="@dimen/details_textsize"
-            android:textStyle="bold" />
+            android:layout_toEndOf="@id/tv_main_activity_country_emoji" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

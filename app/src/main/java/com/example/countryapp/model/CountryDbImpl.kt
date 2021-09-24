@@ -6,12 +6,12 @@ import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.rx3.rxQuery
 import io.reactivex.rxjava3.core.Observable
 
-class CountryApolloAccess(
-    private var apolloClient: ApolloClient = ApolloClient.builder()
-        .serverUrl(URL).build()
-) {
+class CountryDbImpl(
+        private var apolloClient: ApolloClient = ApolloClient.builder()
+                .serverUrl(URL).build()
+) : CountryDb {
 
-    fun getCountryList(): Observable<Response<CountryListQuery.Data>> {
+    override fun getCountryList(): Observable<Response<CountryListQuery.Data>> {
         return apolloClient.rxQuery(CountryListQuery())
     }
 

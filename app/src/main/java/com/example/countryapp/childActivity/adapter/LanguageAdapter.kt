@@ -8,15 +8,22 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countryapp.R
+import com.example.countryapp.constants.CountryConst
+import com.example.countryapp.databinding.LanguageDetailsBinding
 import com.example.countryapp.model.CountryLanguage
+import kotlinx.android.synthetic.main.language_details.view.*
 
-class LanguageAdapter(private val languageList: MutableList<CountryLanguage>, val context: Context) :
+class LanguageAdapter(private val languageList: MutableList<CountryLanguage>, private val context: Context) :
     ListAdapter<CountryLanguage, LanguageAdapter.LanguageViewHolder>(LanguageDiffUtilCallback()) {
 
+    init {
+        if (languageList.isEmpty()) {
+            languageList.add(CountryLanguage(CountryConst.LANGUAGE_ERROR))
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
-        val inflater =
-            LayoutInflater.from(parent.context).inflate(R.layout.language_details, parent, false)
+        val inflater = LanguageDetailsBinding.inflate(LayoutInflater.from(context), parent, false)
         return LanguageViewHolder(inflater)
     }
 
@@ -27,10 +34,9 @@ class LanguageAdapter(private val languageList: MutableList<CountryLanguage>, va
     }
 
 
-    class LanguageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+    class LanguageViewHolder(itemView: LanguageDetailsBinding) : RecyclerView.ViewHolder(itemView.root) {
         fun bindItems(language: CountryLanguage) {
-            itemView.findViewById<TextView>(R.id.tvLanguage).text = language.language
+            itemView.tv_child_activity_language_item.text = language.language
         }
     }
 }
