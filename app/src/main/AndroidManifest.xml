@@ -2,28 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.countryapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/earth"
+        android:label="CountryApp"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/earth"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CountryApp"
-        >
+        android:theme="@style/Theme.CountryApp">
         <activity
-            android:name=".ChildActivity"
+            android:name=".childActivity.ChildActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:parentActivityName=".mainActivity.MainActivity"></activity>
 
-
-        </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:name=".mainActivity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#F1F1F1"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-
-    <androidx.appcompat.widget.Toolbar
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#D6C28D">
+        android:background="@color/seashell"
+        android:orientation="vertical"
+        tools:context=".mainActivity.MainActivity">
+
+
+        <androidx.appcompat.widget.Toolbar style="@style/TextView.ToolBar.Background">
+
+            <TextView
+                style="@style/TextView.ToolBar"
+                android:text="@string/toolbar_text" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            style="@style/TextView"
+            android:src="@drawable/earth"
+            tools:ignore="ContentDescription" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="sans-serif"
-            android:text="Country List"
-            android:textColor="#313131"
-            android:textSize="32sp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <ImageView
-        android:layout_width="133dp"
-        android:layout_height="133dp"
-        android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher_main_activity_earth_foreground" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="sans-serif-thin"
-        android:text="Choose a card :)"
-        android:textColor="#000000"
-        android:textSize="44sp"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main_activity"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
+            style="@style/TextView.Font.MainActivityTop"
+            android:layout_marginBottom="28dp"
+            android:text="@string/call_text" />
 
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main_activity_country_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
+        </androidx.recyclerview.widget.RecyclerView>
 
-</LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_main_activity"
+        style="@style/TextView"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>
