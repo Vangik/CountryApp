@@ -10,6 +10,7 @@ import com.example.countryapp.model.CountryLanguage
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.constants.CountryConst
 import com.example.countryapp.databinding.ActivityMainBinding
+import com.example.countryapp.model.util.DataMapper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers.io
 
@@ -19,25 +20,11 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
     private val countryQuery = CountryDbImpl()
     private val countryList: MutableList<CountryModel> = mutableListOf()
 
+
     private fun parseResponse(list: List<CountryListQuery.Country>?): MutableList<CountryModel> {
         list?.forEach { country ->
-            val countryLanguageList: MutableList<CountryLanguage> = mutableListOf()
-            countryList.add(with(country) {
-                CountryModel(
-                    name,
-                    emoji,
-                    capital ?:CountryConst.CAPITAL_ERROR,
-                    continent.name,
-                    native_,
-                    currency?.split(" ")?.toMutableList(),
-                    countryLanguageList = countryLanguageList.apply {
-                        country.languages.forEach { language ->
-                            add(CountryLanguage(language.name))
-                        }
-                    },
-                    country.phone.split(",").toMutableList()
-                )
-            })
+            val dataMapper = DataMapper()
+            countryList.add(dataMapper.mapFromEntityToModel(country))
         }
         return countryList
     }
