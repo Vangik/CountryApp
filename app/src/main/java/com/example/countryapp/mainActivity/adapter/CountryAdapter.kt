@@ -25,7 +25,6 @@ class CountryAdapter(
         val country = countryList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
-            val country = countryList[position]
             val intent = Intent(context, ChildActivity::class.java)
             intent.putExtra(CountryConst.INTENT_COUNTRY_DETAILS_NAME, country)
             context.startActivity(intent)

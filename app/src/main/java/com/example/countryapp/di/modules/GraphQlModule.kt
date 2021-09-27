@@ -1,7 +1,7 @@
-package com.example.countryapp.di
+package com.example.countryapp.di.modules
 
 import com.apollographql.apollo.ApolloClient
-import com.example.countryapp.model.DbImpl.CountryDbImpl
+import com.example.countryapp.network.DbImpl.CountryDbImpl
 import dagger.Module
 import dagger.Provides
 

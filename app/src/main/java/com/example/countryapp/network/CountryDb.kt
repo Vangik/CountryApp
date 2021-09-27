@@ -1,4 +1,4 @@
-package com.example.countryapp.model
+package com.example.countryapp.network
 
 import com.apollographql.apollo.api.Response
 import com.example.countryapp.CountryListQuery

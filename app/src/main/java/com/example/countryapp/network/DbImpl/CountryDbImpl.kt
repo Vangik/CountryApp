@@ -1,10 +1,10 @@
-package com.example.countryapp.model.DbImpl
+package com.example.countryapp.network.DbImpl
 
 import com.apollographql.apollo.ApolloClient
 import com.example.countryapp.CountryListQuery
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.rx3.rxQuery
-import com.example.countryapp.model.CountryDb
+import com.example.countryapp.network.CountryDb
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
