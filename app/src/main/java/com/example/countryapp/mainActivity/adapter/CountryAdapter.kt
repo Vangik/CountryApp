@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countryapp.childActivity.ChildActivity
-import com.example.countryapp.constants.CountryConst
+import com.example.countryapp.constants.Const
 import com.example.countryapp.databinding.CountryListItemBinding
 import com.example.countryapp.model.CountryModel
 import kotlinx.android.synthetic.main.country_list_item.view.*
@@ -26,7 +26,7 @@ class CountryAdapter(
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ChildActivity::class.java)
-            intent.putExtra(CountryConst.INTENT_COUNTRY_DETAILS_NAME, country)
+            intent.putExtra(Const.INTENT_COUNTRY_DETAILS_NAME, country.countryCode)
             context.startActivity(intent)
         }
     }

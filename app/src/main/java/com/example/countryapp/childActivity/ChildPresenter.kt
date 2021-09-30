@@ -1,52 +1,29 @@
 package com.example.countryapp.childActivity
 
-import android.content.Context
-import android.graphics.Typeface
-import android.util.TypedValue
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
-import com.example.countryapp.R
-import com.example.countryapp.application.CountryApplication
-import com.example.countryapp.constants.CountryConst
-import com.example.countryapp.mainActivity.MainActivity
+import com.example.countryapp.constants.Const
+import com.example.countryapp.model.CountryModel
+import com.example.countryapp.model.util.toCountryModel
+import com.example.countryapp.network.DbImpl.CountryDbImpl
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers.io
 
-class ChildPresenter(private val context: Context) : ChildContract.Presenter {
+class ChildPresenter(private val childView: ChildContract.View, val countryDbImpl: CountryDbImpl) :
+    ChildContract.Presenter {
 
-    override fun setNewTextView(llcurrencies: LinearLayout, text: String, backgroundColor: Int) {
-        TextView(context).apply {
-            setTextColor(resources.getColor(R.color.mine_shaft))
-            setBackgroundResource(backgroundColor)
-            typeface = Typeface.create(CountryConst.MAIN_FONT, Typeface.BOLD)
-            setTextSize(
-                TypedValue.COMPLEX_UNIT_PX,
-                resources.getDimension(R.dimen.details_textsize)
-            )
-            with(resources) {
-                setPadding(
-                    getDimensionPixelSize(R.dimen.country_details_item_padding),
-                    getDimensionPixelSize(R.dimen.zero_padding),
-                    getDimensionPixelSize(R.dimen.country_details_item_padding),
-                    getDimensionPixelSize(R.dimen.zero_padding)
-                )
-            }
-            setText(text)
-            RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                with(resources) {
-                    setMargins(
-                        getDimensionPixelSize(R.dimen.zero_padding),
-                        getDimensionPixelSize(R.dimen.zero_padding),
-                        getDimensionPixelSize(R.dimen.country_details_item_margin),
-                        getDimensionPixelSize(R.dimen.zero_padding)
-                    )
+    private lateinit var countryDetails: CountryModel
+
+    override fun fetchCountryDetails(id: String) {
+           countryDbImpl.getCountryById(id).subscribeOn(io())
+            .observeOn(AndroidSchedulers.mainThread()).subscribe(
+                { response ->
+                    countryDetails = response.data?.country!!.toCountryModel()
+                    print(countryDbImpl)
+                    childView.showCountryDetails(countryDetails)
+                },{
+                    childView.onError(Const.ERROR_MESSAGE)
                 }
-                layoutParams = this
-            }
-            llcurrencies.addView(this)
-        }
+            )
+
 
     }
 

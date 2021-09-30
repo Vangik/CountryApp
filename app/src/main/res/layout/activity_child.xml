@@ -260,11 +260,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp">
 
-                <LinearLayout
-                    android:id="@+id/ll_child_activity_country_currencies"
+                <com.example.countryapp.childActivity.views.CountryDetailsView
+                    android:id="@+id/currencies_view"
                     style="@style/LayoutSize.Horizontal">
 
-                </LinearLayout>
+
+                </com.example.countryapp.childActivity.views.CountryDetailsView>
+
             </HorizontalScrollView>
 
             <TextView
@@ -298,11 +300,10 @@
 
             <HorizontalScrollView style="@style/LayoutSize">
 
-                <LinearLayout
-                    android:id="@+id/ll_child_activity_country_calling_code"
+                <com.example.countryapp.childActivity.views.CountryDetailsView
+                    android:id="@+id/calling_code_view"
                     style="@style/LayoutSize.Horizontal">
-
-                </LinearLayout>
+                </com.example.countryapp.childActivity.views.CountryDetailsView>
 
             </HorizontalScrollView>
 

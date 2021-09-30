@@ -2,13 +2,10 @@ package com.example.countryapp.childActivity.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.countryapp.R
-import com.example.countryapp.constants.CountryConst
+import com.example.countryapp.constants.Const
 import com.example.countryapp.databinding.LanguageDetailsBinding
 import com.example.countryapp.model.CountryLanguage
 import kotlinx.android.synthetic.main.language_details.view.*
@@ -18,7 +15,7 @@ class LanguageAdapter(private val languageList: MutableList<CountryLanguage>, pr
 
     init {
         if (languageList.isEmpty()) {
-            languageList.add(CountryLanguage(CountryConst.LANGUAGE_ERROR))
+            languageList.add(CountryLanguage(Const.LANGUAGE_ERROR))
         }
     }
 

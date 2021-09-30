@@ -1,6 +1,5 @@
 package com.example.countryapp.mainActivity
 
-import com.example.countryapp.base.BasePresenter
 import com.example.countryapp.model.CountryModel
 
 interface MainContract {

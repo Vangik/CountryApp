@@ -1,13 +1,14 @@
 package com.example.countryapp.childActivity
 
-import android.widget.LinearLayout
+import com.example.countryapp.model.CountryModel
 
 interface ChildContract {
     interface View {
         fun onError(s: String)
+        fun showCountryDetails(countryDetails: CountryModel)
     }
 
     interface Presenter {
-        fun setNewTextView(llcurrencies: LinearLayout, text: String, backgroundColor: Int)
+        fun fetchCountryDetails(id: String)
     }
 }

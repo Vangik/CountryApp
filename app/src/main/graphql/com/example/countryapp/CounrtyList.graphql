@@ -1,5 +1,24 @@
 query CountryList{
-    countries{
+    countries {
+        code
+        emoji
+        name
+        capital
+        native
+        continent{
+            code
+            name
+        }
+        currency
+        languages{
+            name
+        }
+        phone
+    }
+}
+query CountryById($code: ID!){
+    country (code: $code) {
+        code
         emoji
         name
         capital

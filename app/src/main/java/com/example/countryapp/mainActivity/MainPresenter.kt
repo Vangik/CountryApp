@@ -1,29 +1,27 @@
 package com.example.countryapp.mainActivity
 
 import com.example.countryapp.model.CountryModel
-import com.example.countryapp.model.util.DataMapper
+import com.example.countryapp.model.util.toCountryModel
 import com.example.countryapp.network.DbImpl.CountryDbImpl
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import javax.inject.Inject
 
-class MainPresenter (private val mainActivity: MainContract.View, private val countryQuery: CountryDbImpl) :
+class MainPresenter (private val mainView: MainContract.View, private val countryQuery: CountryDbImpl) :
     MainContract.CountryPresenter {
 
-    private val countryList: MutableList<CountryModel> = mutableListOf()
+    private var countryList: MutableList<CountryModel> = mutableListOf()
 
     override fun getCountryList() {
-        val dataMapper = DataMapper()
-        mainActivity.showProgressBar()
+        mainView.showProgressBar()
         countryQuery.getCountryList().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                it.data?.countries?.forEach { country -> countryList.add(dataMapper.mapFromEntityToModel(country)) }
-                mainActivity.showCountryList(countryList)
+            .subscribe({ response ->
+                countryList = response.data?.countries?.map { it.toCountryModel() } as MutableList<CountryModel>
+                mainView.showCountryList(countryList)
             }, {
-                mainActivity.onError()
+                mainView.onError()
             }, {
-                mainActivity.hideProgressBar()
+                mainView.hideProgressBar()
             })
     }
 }

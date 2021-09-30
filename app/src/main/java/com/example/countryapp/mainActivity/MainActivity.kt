@@ -7,7 +7,7 @@ import com.example.countryapp.application.CountryApplication
 import com.example.countryapp.mainActivity.adapter.CountryAdapter
 import com.example.countryapp.network.DbImpl.CountryDbImpl
 import com.example.countryapp.model.CountryModel
-import com.example.countryapp.constants.CountryConst
+import com.example.countryapp.constants.Const
 import com.example.countryapp.databinding.ActivityMainBinding
 import javax.inject.Inject
 
@@ -24,6 +24,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), MainContract.Vi
         (application as CountryApplication).appComponent.inject(this@MainActivity)
         mainPresenter = MainPresenter(this@MainActivity, countryQuery)
         mainPresenter.getCountryList()
+
     }
 
     override fun showCountryList(list: MutableList<CountryModel>) {
@@ -48,7 +49,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), MainContract.Vi
     }
 
     override fun onError() {
-        Toast.makeText(this@MainActivity, CountryConst.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@MainActivity, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
     }
 
 }
