@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.country_list_item.view.*
 
 
 class CountryAdapter(
-    private val countryList: MutableList<CountryModel>, private val context: Context
+    private val countryList: List<CountryModel>, private val context: Context
 ) : ListAdapter<CountryModel, CountryAdapter.CountryViewHolder>(CountryDiffUtilCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val inflater = CountryListItemBinding.inflate(LayoutInflater.from(context), parent, false)

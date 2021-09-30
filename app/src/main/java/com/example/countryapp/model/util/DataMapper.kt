@@ -7,7 +7,7 @@ import com.example.countryapp.model.CountryLanguage
 import com.example.countryapp.model.CountryModel
 
 
-fun CountryListQuery.Country.toCountryModel() = CountryModel(
+fun CountryListQuery.Country.toCountryModel() : CountryModel = CountryModel(
     code,
     name,
     emoji,
@@ -29,7 +29,7 @@ fun List<CountryListQuery.Language>.toLanguageList(): MutableList<CountryLanguag
     return countryLanguageList
 }
 
-fun CountryByIdQuery.Country.toCountryModel() = CountryModel(
+fun CountryByIdQuery.Country.toCountryModel(): CountryModel = CountryModel(
     code,
     name,
     emoji,
@@ -37,15 +37,13 @@ fun CountryByIdQuery.Country.toCountryModel() = CountryModel(
     continent.name,
     native_,
     currency?.toCurrencies(),
-    languages.toLanguageList2(),
+    languages.toLanguageListDetails(),
     phone.toPhones()
 )
 
-fun List<CountryByIdQuery.Language>.toLanguageList2(): MutableList<CountryLanguage> {
+fun List<CountryByIdQuery.Language>.toLanguageListDetails(): MutableList<CountryLanguage> {
     val countryLanguageList = mutableListOf<CountryLanguage>()
     this.forEach { countryLanguageList.add(CountryLanguage(it.name)) }
     return countryLanguageList
 }
-
-
 

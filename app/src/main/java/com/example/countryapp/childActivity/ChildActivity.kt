@@ -6,6 +6,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.countryapp.R
 import com.example.countryapp.childActivity.adapter.LanguageAdapter
 import com.example.countryapp.constants.Const
@@ -13,38 +15,79 @@ import com.example.countryapp.databinding.ActivityChildBinding
 import com.example.countryapp.ViewBindingActivity
 import com.example.countryapp.application.CountryApplication
 import com.example.countryapp.model.CountryLanguage
-import com.example.countryapp.model.CountryModel
-import com.example.countryapp.network.DbImpl.CountryDbImpl
+import com.example.countryapp.repository.impl.CountryRepositoryImpl
+import com.example.countryapp.viewmodels.ChildViewModel
+import com.example.countryapp.viewmodels.ViewModelFactory
+import com.example.countryapp.viewmodels.states.ViewState
 import kotlinx.android.synthetic.main.activity_child.*
 import javax.inject.Inject
 
-class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract.View {
-
-
-    private lateinit var languageList: MutableList<CountryLanguage>
-    private lateinit var countryDetails: CountryModel
-    private lateinit var childPresenter: ChildPresenter
+class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
 
     @Inject
-    lateinit var countryDbImpl: CountryDbImpl
+    lateinit var countryQuery: CountryRepositoryImpl
+
+    private lateinit var mainViewModel: ChildViewModel
 
     @SuppressLint("ResourceType")
 
     override fun setup() {
         (application as CountryApplication).appComponent.inject(this@ChildActivity)
-
-        childPresenter = ChildPresenter(this, countryDbImpl)
-        val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME)
-        if (name != null) {
-            childPresenter.fetchCountryDetails(name)
-        }
+        val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME).let { it ?: ""}
+        mainViewModel = ViewModelProvider(this, ViewModelFactory(countryQuery, name)).get(ChildViewModel::class.java)
+        mainViewModel.fetchCountryList()
+        observeLiveData()
         showToolBarBackArrow(tb_child_activity)
-
     }
 
     private fun MutableList<String>?.getList(text: String) = if (this.isNullOrEmpty()) {
         mutableListOf(text)
     } else this
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun observeLiveData() {
+        mainViewModel.getCountryById().observe(this, Observer { response ->
+            when (response) {
+                is ViewState.Success -> {
+                    response.value?.apply {
+                        with(binding) {
+                            tvChildActivityCountryName.text = countryName
+                            tvChildActivityCountryEmoji.text = countryImage
+                            tvChildActivityCountryCapital.text = countryCapital
+                            tvChildActivityCountryRegion.text = countryRegion
+                            tvChildActivityCountryPopulation.text = countryPopulation
+                            countryCurrencies.getList(Const.CURRENCY_ERROR).forEach {
+                                currenciesView.setNewTextView(
+                                    it,
+                                    R.drawable.currencies_background
+                                )
+                            }
+                            setRecyclerView(countryLanguageList)
+                            tvChildActivityCountryTimeZone.text = Const.FUTURE_FEATURE_MESSAGE
+                            countryCalling.forEach {
+                                callingCodeView.setNewTextView(
+                                    it,
+                                    R.drawable.callingcodde_background
+                                )
+                            }
+                        }
+                    }
+                }
+                is ViewState.Error -> {
+                    Toast.makeText(this, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun setRecyclerView(languageList: MutableList<CountryLanguage>) {
+        val languageAdapter = LanguageAdapter(languageList, this@ChildActivity)
+        binding.rvChildActivityCountryLanguage.adapter = languageAdapter
+        languageAdapter.submitList(languageList)
+    }
 
     private fun showToolBarBackArrow(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
@@ -52,44 +95,6 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
             setDisplayHomeAsUpEnabled(true)
             this.title = ""
         }
-    }
-
-    private fun setDetails() {
-        countryDetails.apply {
-            with(binding) {
-                tvChildActivityCountryName.text = countryDetails.countryName
-                tvChildActivityCountryName.text = countryName
-                tvChildActivityCountryEmoji.text = countryImage
-                tvChildActivityCountryCapital.text = countryCapital
-                tvChildActivityCountryRegion.text = countryRegion
-                tvChildActivityCountryPopulation.text = countryPopulation
-                countryCurrencies.getList(Const.CURRENCY_ERROR).forEach {
-                    currenciesView.setNewTextView(
-                        it,
-                        R.drawable.currencies_background
-                    )
-                }
-                countryLanguageList.let { languageList = it }
-                tvChildActivityCountryTimeZone.text = Const.FUTURE_FEATURE_MESSAGE
-                countryCalling.forEach {
-                    callingCodeView.setNewTextView(
-                        it,
-                        R.drawable.callingcodde_background
-                    )
-                }
-            }
-        }
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    private fun setRecyclerView() {
-        val languageAdapter = LanguageAdapter(languageList, this@ChildActivity)
-        binding.rvChildActivityCountryLanguage.adapter = languageAdapter
-        languageAdapter.submitList(languageList)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -100,17 +105,6 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
     }
 
     override fun getViewBinding() = ActivityChildBinding.inflate(layoutInflater)
-
-    override fun onError(s: String) {
-        Toast.makeText(this, s, Toast.LENGTH_LONG).show()
-    }
-
-
-    override fun showCountryDetails(countryDetails: CountryModel) {
-        this.countryDetails = countryDetails
-        setDetails()
-        setRecyclerView()
-    }
 
 
 }

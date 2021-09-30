@@ -5,7 +5,7 @@ import com.example.countryapp.model.CountryModel
 
 class CountryDiffUtilCallback : DiffUtil.ItemCallback<CountryModel>() {
     override fun areItemsTheSame(oldItem: CountryModel, newItem: CountryModel) =
-        oldItem.countryName == newItem.countryName
+        oldItem.countryCode == newItem.countryCode
 
     override fun areContentsTheSame(oldItem: CountryModel, newItem: CountryModel) =
         areItemsTheSame(oldItem, newItem)

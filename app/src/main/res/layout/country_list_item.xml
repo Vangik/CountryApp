@@ -40,7 +40,7 @@
             style="@style/TextView.Font.Label"
             android:layout_below="@id/tv_main_activity_country_name"
             android:layout_toEndOf="@id/tv_main_activity_country_emoji"
-            android:text="@string/country_name_label" />
+            android:text="@string/country_capital_label" />
 
         <TextView
             android:id="@+id/tv_main_activity_country_capital"
