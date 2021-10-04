@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.example.countryapp.ViewBindingActivity
 import com.example.countryapp.application.CountryApplication
 import com.example.countryapp.mainActivity.adapter.CountryAdapter
-import com.example.countryapp.network.DbImpl.CountryDbImpl
+import com.example.countryapp.countryRepository.impl.CountryRepositoryImpl
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.constants.Const
 import com.example.countryapp.databinding.ActivityMainBinding
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class MainActivity : ViewBindingActivity<ActivityMainBinding>(), MainContract.View {
 
-    @Inject lateinit var countryQuery: CountryDbImpl
+    @Inject lateinit var countryQuery: CountryRepositoryImpl
 
     private lateinit var mainPresenter: MainPresenter
 

@@ -14,7 +14,7 @@ import com.example.countryapp.ViewBindingActivity
 import com.example.countryapp.application.CountryApplication
 import com.example.countryapp.model.CountryLanguage
 import com.example.countryapp.model.CountryModel
-import com.example.countryapp.network.DbImpl.CountryDbImpl
+import com.example.countryapp.countryRepository.impl.CountryRepositoryImpl
 import kotlinx.android.synthetic.main.activity_child.*
 import javax.inject.Inject
 
@@ -26,14 +26,14 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
     private lateinit var childPresenter: ChildPresenter
 
     @Inject
-    lateinit var countryDbImpl: CountryDbImpl
+    lateinit var countryRepositoryImpl: CountryRepositoryImpl
 
     @SuppressLint("ResourceType")
 
     override fun setup() {
         (application as CountryApplication).appComponent.inject(this@ChildActivity)
 
-        childPresenter = ChildPresenter(this, countryDbImpl)
+        childPresenter = ChildPresenter(this, countryRepositoryImpl)
         val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME)
         if (name != null) {
             childPresenter.fetchCountryDetails(name)

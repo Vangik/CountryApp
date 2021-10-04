@@ -2,11 +2,11 @@ package com.example.countryapp.mainActivity
 
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.model.util.toCountryModel
-import com.example.countryapp.network.DbImpl.CountryDbImpl
+import com.example.countryapp.countryRepository.impl.CountryRepositoryImpl
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class MainPresenter (private val mainView: MainContract.View, private val countryQuery: CountryDbImpl) :
+class MainPresenter (private val mainView: MainContract.View, private val countryQuery: CountryRepositoryImpl) :
     MainContract.CountryPresenter {
 
     private var countryList: MutableList<CountryModel> = mutableListOf()
