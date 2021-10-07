@@ -162,23 +162,6 @@
             app:layout_constraintTop_toBottomOf="@id/iv_vector6"
             tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/iv_vector7"
-            style="@style/TextView.EllipseMargin.Vector"
-            android:layout_below="@id/tv_child_activity_country_emoji"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ellipse7"
-            tools:ignore="ContentDescription" />
-
-        <ImageView
-            android:id="@+id/iv_ellipse8"
-            style="@style/TextView.EllipseMargin.First"
-            android:layout_below="@id/tv_child_activity_country_emoji"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vector7"
-            tools:ignore="ContentDescription" />
-
-
         <LinearLayout
             style="@style/LayoutSize.Vertical"
             android:layout_marginStart="92dp"
@@ -280,17 +263,6 @@
                 style="@style/LayoutSize.Horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <TextView
-                android:id="@+id/tv_child_activity_label_timezone"
-                style="@style/TextView.Font.Label.Details"
-                android:layout_marginTop="24dp"
-                android:text="@string/country_time_label" />
-
-            <TextView
-                android:id="@+id/tv_child_activity_country_time_zone"
-                style="@style/TextView.Font"
-                android:maxLines="1"
-                android:scrollHorizontally="true" />
 
             <TextView
                 android:id="@+id/tv_child_activity_label_callingcodes"

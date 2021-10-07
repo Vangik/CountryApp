@@ -4,8 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.countryapp.repository.impl.CountryRepositoryImpl
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
-class ViewModelFactory(private val repository: CountryRepositoryImpl, private val string: String = "") :
+class ViewModelFactory @Inject constructor(private val repository: CountryRepositoryImpl, private val string: String = "") :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 

@@ -10,4 +10,11 @@
     <string name="country_language_label">Official Languages</string>
     <string name="country_time_label">Time zone</string>
     <string name="country_calling_code_label">Calling Codes</string>
+    <string name="search_hint">Search</string>
+
+    <string-array name="filter">
+        <item>Country</item>
+        <item>Capital</item>
+        <item>Region</item>
+    </string-array>
 </resources>

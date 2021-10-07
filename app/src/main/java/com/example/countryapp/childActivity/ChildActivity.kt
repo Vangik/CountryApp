@@ -1,9 +1,11 @@
 package com.example.countryapp.childActivity
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.*
 import androidx.lifecycle.Observer
@@ -26,16 +28,16 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
 
     @Inject
     lateinit var countryQuery: CountryRepositoryImpl
+    lateinit var childViewModel: ChildViewModel
 
-    private lateinit var mainViewModel: ChildViewModel
-
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ResourceType")
 
     override fun setup() {
         (application as CountryApplication).appComponent.inject(this@ChildActivity)
-        val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME).let { it ?: ""}
-        mainViewModel = ViewModelProvider(this, ViewModelFactory(countryQuery, name)).get(ChildViewModel::class.java)
-        mainViewModel.fetchCountryList()
+        val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME).let { it ?: "" }
+        childViewModel = ViewModelProvider(this, ViewModelFactory(countryQuery,name))[ChildViewModel::class.java]
+        childViewModel.fetchCountryList()
         observeLiveData()
         showToolBarBackArrow(tb_child_activity)
     }
@@ -49,7 +51,7 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
     }
 
     private fun observeLiveData() {
-        mainViewModel.getCountryById().observe(this, Observer { response ->
+        childViewModel.getCountry().observe(this, Observer { response ->
             when (response) {
                 is ViewState.Success -> {
                     response.value?.apply {
@@ -66,7 +68,6 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
                                 )
                             }
                             setRecyclerView(countryLanguageList)
-                            tvChildActivityCountryTimeZone.text = Const.FUTURE_FEATURE_MESSAGE
                             countryCalling.forEach {
                                 callingCodeView.setNewTextView(
                                     it,
