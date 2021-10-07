@@ -8,5 +8,5 @@ object Const {
     const val INTENT_COUNTRY_DETAILS_NAME = "countryDetails"
     const val CURRENCY_ERROR = "Currencies not found"
     const val LANGUAGE_ERROR = "Languages not found"
-    const val SPLIT_STRING_DELIMITER =","
+    const val SPLIT_STRING_DELIMITER = ","
 }

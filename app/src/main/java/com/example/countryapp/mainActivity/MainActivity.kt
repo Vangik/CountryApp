@@ -1,6 +1,7 @@
 package com.example.countryapp.mainActivity
 
 import android.view.View
+import android.widget.SearchView
 import android.widget.Toast
 import com.example.countryapp.viewmodels.states.ViewState
 import androidx.lifecycle.Observer
@@ -15,20 +16,21 @@ import com.example.countryapp.repository.impl.CountryRepositoryImpl
 import com.example.countryapp.viewmodels.MainViewModel
 import com.example.countryapp.viewmodels.ViewModelFactory
 import javax.inject.Inject
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
-    @Inject
-    lateinit var countryQuery: CountryRepositoryImpl
-    private lateinit var mainViewModel: MainViewModel
+    lateinit var mainViewModel: MainViewModel
+    @Inject lateinit var viewModelFactory: ViewModelFactory
+
 
     override fun setup(): Unit = with(binding) {
         (application as CountryApplication).appComponent.inject(this@MainActivity)
-        mainViewModel = ViewModelProvider(
-            this@MainActivity,
-            ViewModelFactory(countryQuery)
-        ).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this@MainActivity, viewModelFactory)[MainViewModel::class.java]
         mainViewModel.fetchCountryList()
         observeLiveData()
     }
@@ -48,6 +50,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
                 is ViewState.Error -> {
                     Toast.makeText(this, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
                 }
+                else -> Toast.makeText(this, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -56,5 +59,16 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
         val countryAdapter = CountryAdapter(languageList, this@MainActivity)
         binding.rvMainActivityCountryDetails.adapter = countryAdapter
         countryAdapter.submitList(languageList)
+        binding.countrySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+            OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                countryAdapter.filter.filter(newText)
+                return false
+            }
+        })
     }
 }

@@ -25,13 +25,9 @@ class GraphQlModule {
         val apolloClient =
             ApolloClient.builder().serverUrl(provideUrl()).normalizedCache(cacheFactory)
                 .build()
-
         val dump = apolloClient.apolloStore.normalizedCache().dump();
-
-
         Log.d("apolloLog", NormalizedCache.prettifyDump(dump))
         return apolloClient
-
     }
 
     @Provides
