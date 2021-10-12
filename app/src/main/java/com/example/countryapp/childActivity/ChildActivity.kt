@@ -28,7 +28,7 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
 
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    private val childViewModel: ChildViewModel by lazy {ViewModelProvider(this, viewModelFactory).get(ChildViewModel::class.java)}
+    val childViewModel: ChildViewModel by lazy {ViewModelProvider(this, viewModelFactory).get(ChildViewModel::class.java)}
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setup() {

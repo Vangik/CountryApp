@@ -2,11 +2,12 @@ package com.example.countryapp.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.countryapp.repository.CountryRepository
 import com.example.countryapp.repository.impl.CountryRepositoryImpl
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
-class ViewModelFactory @Inject constructor(private val repository: CountryRepositoryImpl) :
+class ViewModelFactory @Inject constructor(private var repository: CountryRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
@@ -20,4 +21,5 @@ class ViewModelFactory @Inject constructor(private val repository: CountryReposi
             else -> throw IllegalArgumentException("ViewModel not found")
         }
     }
+
 }

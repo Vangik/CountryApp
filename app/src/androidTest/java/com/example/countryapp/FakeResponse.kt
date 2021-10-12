@@ -7,7 +7,7 @@ object FakeResponse {
             "      {\n" +
             "      \"__typename\": \"Country\",\n" +
             "      \"code\": \"AD\",\n" +
-            "      \"emoji\": \"\uD83C\uDDFA\uD83C\uDDE6\",\n" +
+            "      \"emoji\": \"\uD83C\uDDE6\uD83C\uDDE9\",\n" +
             "      \"name\": \"Andorra\",\n" +
             "      \"capital\": \"Andorra la Vella\",\n" +
             "      \"native\": \"Andorra\",\n" +
@@ -25,6 +25,32 @@ object FakeResponse {
             "        }\n" +
             "      ]\n" +
             "    }]" +
+            "  }" +
+            "}"
+    const val COUNTRY_BY_ID ="{\n" +
+            "  \"data\": {\n" +
+            "    \"country\": \n" +
+            "      {\n" +
+            "      \"__typename\": \"Country\",\n" +
+            "      \"code\": \"AD\",\n" +
+            "      \"emoji\": \"\uD83C\uDDE6\uD83C\uDDE9\",\n" +
+            "      \"name\": \"Andorra\",\n" +
+            "      \"capital\": \"Andorra la Vella\",\n" +
+            "      \"native\": \"Andorra\",\n" +
+            "      \"continent\": {\n" +
+            "        \"__typename\": \"Continent\",\n" +
+            "        \"code\": \"EU\",\n" +
+            "        \"name\": \"Europe\"\n" +
+            "      },\n" +
+            "      \"currency\": \"EUR\",\n" +
+            "      \"phone\": \"376\",\n" +
+            "      \"languages\": [\n" +
+            "        {\n" +
+            "          \"__typename\": \"Language\",\n" +
+            "          \"name\": \"Catalan\"\n" +
+            "        }\n" +
+            "      ]\n" +
+            "    }" +
             "  }" +
             "}"
 

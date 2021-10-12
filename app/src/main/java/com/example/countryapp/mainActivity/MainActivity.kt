@@ -3,6 +3,7 @@ package com.example.countryapp.mainActivity
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.annotation.VisibleForTesting
 import com.example.countryapp.viewmodels.states.ViewState
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,9 +22,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
-    @Inject lateinit var viewModelFactory: ViewModelFactory
-    private val mainViewModel: MainViewModel by lazy { ViewModelProvider(this@MainActivity, viewModelFactory)[MainViewModel::class.java] }
+    val mainViewModel: MainViewModel by lazy {
+        ViewModelProvider(
+            this@MainActivity,
+            viewModelFactory
+        )[MainViewModel::class.java]
+    }
 
     override fun setup(): Unit = with(binding) {
         (application as CountryApplication).appComponent.inject(this@MainActivity)
@@ -33,7 +40,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
-    private fun observeLiveData() {
+   private fun observeLiveData() {
         mainViewModel.getCountryList().observe(this@MainActivity, Observer { response ->
             when (response) {
                 is ViewState.Loading -> {
@@ -55,7 +62,7 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
         val countryAdapter = CountryAdapter(languageList, this@MainActivity)
         binding.rvMainActivityCountryDetails.adapter = countryAdapter
         countryAdapter.submitList(languageList)
-        binding.countrySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+        binding.countrySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
