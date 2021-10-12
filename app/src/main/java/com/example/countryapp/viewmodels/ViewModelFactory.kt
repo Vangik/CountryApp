@@ -6,7 +6,7 @@ import com.example.countryapp.repository.impl.CountryRepositoryImpl
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
-class ViewModelFactory @Inject constructor(private val repository: CountryRepositoryImpl, private val string: String = "") :
+class ViewModelFactory @Inject constructor(private val repository: CountryRepositoryImpl) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
@@ -15,7 +15,7 @@ class ViewModelFactory @Inject constructor(private val repository: CountryReposi
                 MainViewModel(this.repository) as T
             }
             modelClass.isAssignableFrom(ChildViewModel::class.java) -> {
-                ChildViewModel(this.repository, this.string) as T
+                ChildViewModel(this.repository) as T
             }
             else -> throw IllegalArgumentException("ViewModel not found")
         }

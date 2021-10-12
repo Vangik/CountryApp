@@ -1,6 +1,5 @@
 package com.example.countryapp.repository
 
-import com.apollographql.apollo.ApolloQueryCall
 import com.apollographql.apollo.api.Response
 import com.example.countryapp.CountryByIdQuery
 import com.example.countryapp.CountryListQuery

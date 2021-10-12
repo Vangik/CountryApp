@@ -15,6 +15,7 @@
 
         <TextView
             style="@style/TextView.Font.MainActivityTop"
+            android:layout_marginBottom="28dp"
             android:text="@string/call_text" />
 
     </LinearLayout>
