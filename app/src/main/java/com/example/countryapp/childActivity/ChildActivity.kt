@@ -21,7 +21,6 @@ import com.example.countryapp.model.CountryLanguage
 import com.example.countryapp.viewmodels.ChildViewModel
 import com.example.countryapp.viewmodels.ViewModelFactory
 import com.example.countryapp.viewmodels.states.ViewState
-import kotlinx.android.synthetic.main.activity_child.*
 import javax.inject.Inject
 
 class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
@@ -36,7 +35,7 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
         val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME).let { it ?: "" }
         childViewModel.fetchCountryList(name)
         observeLiveData()
-        showToolBarBackArrow(tb_child_activity)
+        showToolBarBackArrow(binding.tbChildActivity)
     }
 
     private fun MutableList<String>?.getList(text: String) = if (this.isNullOrEmpty()) {

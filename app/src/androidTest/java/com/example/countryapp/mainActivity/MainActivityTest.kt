@@ -1,14 +1,10 @@
 package com.example.countryapp.mainActivity
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
@@ -17,24 +13,14 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.example.countryapp.CountryByIdQuery
 import com.example.countryapp.CountryListQuery
-import com.example.countryapp.FakeResponse
 import com.example.countryapp.R
 import com.example.countryapp.childActivity.ChildActivity
 import com.example.countryapp.constants.Const
-import com.example.countryapp.mainActivity.adapter.CountryAdapter
-import com.example.countryapp.model.CountryModel
 import com.example.countryapp.repository.CountryRepository
-import com.example.countryapp.repository.impl.CountryRepositoryImpl
-import com.example.countryapp.viewmodels.ChildViewModel
-import com.example.countryapp.viewmodels.MainViewModel
-import com.example.countryapp.viewmodels.ViewModelFactory
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.example.countryapp.resources.FakeResponse
 import io.reactivex.rxjava3.core.Observable
 import org.junit.Rule
 import org.junit.Test
@@ -43,15 +29,11 @@ import okio.ByteString.Companion.encodeUtf8
 import org.hamcrest.Matchers.allOf
 import org.junit.After
 import org.junit.Before
-import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.junit.MockitoRule
-import java.io.FileReader
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -164,6 +146,13 @@ class MainActivityTest {
     @Test
     fun testProgressBarVisible() {
         onView(withId(R.id.pb_main_activity)).check(matches(isDisplayed()))
+        `when`(countryRepo.getCountryList()).thenReturn(
+            Observable.just(
+                responseCountryList
+            )
+        )
+
+        activityRule.scenario.onActivity {it.mainViewModel.fetchCountryList() }
     }
 
     @Test
@@ -173,6 +162,7 @@ class MainActivityTest {
                 responseCountryList
             )
         )
+
         activityRule.scenario.onActivity {it.mainViewModel.fetchCountryList() }
         onView(withId(R.id.pb_main_activity)).check(matches(withEffectiveVisibility(Visibility.GONE)))
     }

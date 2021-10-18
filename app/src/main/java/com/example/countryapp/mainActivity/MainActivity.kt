@@ -3,7 +3,6 @@ package com.example.countryapp.mainActivity
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.annotation.VisibleForTesting
 import com.example.countryapp.viewmodels.states.ViewState
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,13 +10,12 @@ import com.example.countryapp.ViewBindingActivity
 import com.example.countryapp.application.CountryApplication
 import com.example.countryapp.constants.Const
 import com.example.countryapp.mainActivity.adapter.CountryAdapter
-import com.example.countryapp.databinding.ActivityMainBinding
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.viewmodels.MainViewModel
 import com.example.countryapp.viewmodels.ViewModelFactory
 import javax.inject.Inject
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.countryapp.databinding.ActivityMainBinding
 
 
 class MainActivity : ViewBindingActivity<ActivityMainBinding>() {

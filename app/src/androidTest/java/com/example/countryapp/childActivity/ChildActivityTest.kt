@@ -13,10 +13,10 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.apollographql.apollo.api.Response
 import com.example.countryapp.CountryByIdQuery
 import com.example.countryapp.CountryListQuery
-import com.example.countryapp.FakeResponse
 import com.example.countryapp.R
 import com.example.countryapp.mainActivity.MainActivity
 import com.example.countryapp.repository.CountryRepository
+import com.example.countryapp.resources.FakeResponse
 import io.reactivex.rxjava3.core.Observable
 import okio.ByteString.Companion.encodeUtf8
 import org.hamcrest.CoreMatchers.allOf

@@ -36,4 +36,7 @@ class ChildViewModel (private var repository: CountryRepository) :
     fun setRepository(repository: CountryRepository){
         this.repository = repository
     }
+    fun setMutableLiveData(newValue: ViewState<CountryModel>){
+        countryDetails.value = newValue
+    }
 }

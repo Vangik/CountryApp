@@ -3,14 +3,18 @@ package com.example.countryapp.childActivity.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.countryapp.R
 import com.example.countryapp.constants.Const
 import com.example.countryapp.databinding.LanguageDetailsBinding
 import com.example.countryapp.model.CountryLanguage
-import kotlinx.android.synthetic.main.language_details.view.*
 
-class LanguageAdapter(private val languageList: MutableList<CountryLanguage>, private val context: Context) :
+class LanguageAdapter(
+    private val languageList: MutableList<CountryLanguage>,
+    private val context: Context
+) :
     ListAdapter<CountryLanguage, LanguageAdapter.LanguageViewHolder>(LanguageDiffUtilCallback()) {
 
     init {
@@ -31,9 +35,10 @@ class LanguageAdapter(private val languageList: MutableList<CountryLanguage>, pr
     }
 
 
-    class LanguageViewHolder(itemView: LanguageDetailsBinding) : RecyclerView.ViewHolder(itemView.root) {
+    class LanguageViewHolder(private val binding: LanguageDetailsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bindItems(language: CountryLanguage) {
-            itemView.tv_child_activity_language_item.text = language.language
+            binding.tvLanguageItem.text = language.language
         }
     }
 }

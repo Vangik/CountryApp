@@ -1,4 +1,4 @@
-package com.example.countryapp
+package com.example.countryapp.resources
 
 object FakeResponse {
     const val COUNTRY_LIST = "{\n" +
