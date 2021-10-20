@@ -1,5 +1,6 @@
 package com.example.countryapp.repository.impl
 
+import allopen.annotations.TestOnlyOpen
 import com.apollographql.apollo.ApolloClient
 import com.example.countryapp.CountryListQuery
 import com.apollographql.apollo.api.Response
@@ -10,6 +11,7 @@ import com.example.countryapp.repository.CountryRepository
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
+@TestOnlyOpen
 class CountryRepositoryImpl @Inject constructor(private val apolloClient: ApolloClient):CountryRepository {
 
     override fun getCountryList(): Observable<Response<CountryListQuery.Data>> {

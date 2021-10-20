@@ -12,10 +12,7 @@ import com.example.countryapp.childActivity.ChildActivity
 import com.example.countryapp.constants.Const
 import com.example.countryapp.databinding.CountryListItemBinding
 import com.example.countryapp.model.CountryModel
-import kotlinx.android.synthetic.main.country_list_item.view.*
 import java.util.*
-import kotlin.collections.ArrayList
-
 
 class CountryAdapter(
     private val countryList: List<CountryModel>, private val context: Context
@@ -48,14 +45,14 @@ class CountryAdapter(
     }
 
 
-    inner class CountryViewHolder(itemView: CountryListItemBinding) :
-        RecyclerView.ViewHolder(itemView.root) {
+    inner class CountryViewHolder(private val binding: CountryListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bindItems(country: CountryModel) {
-            with(itemView) {
-                tv_main_activity_country_name.text = country.countryName
-                tv_main_activity_country_emoji.text = country.countryImage
-                tv_main_activity_country_capital.text = country.countryCapital
-                tv_main_activity_country_region.text = country.countryRegion
+            with(binding) {
+                tvMainActivityCountryName.text = country.countryName
+                tvMainActivityCountryEmoji.text = country.countryImage
+                tvMainActivityCountryCapital.text = country.countryCapital
+                tvMainActivityCountryRegion.text = country.countryRegion
             }
         }
     }

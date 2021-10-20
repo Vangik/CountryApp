@@ -2,6 +2,7 @@ package com.example.countryapp.childActivity
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -17,29 +18,24 @@ import com.example.countryapp.databinding.ActivityChildBinding
 import com.example.countryapp.ViewBindingActivity
 import com.example.countryapp.application.CountryApplication
 import com.example.countryapp.model.CountryLanguage
-import com.example.countryapp.repository.impl.CountryRepositoryImpl
 import com.example.countryapp.viewmodels.ChildViewModel
 import com.example.countryapp.viewmodels.ViewModelFactory
 import com.example.countryapp.viewmodels.states.ViewState
-import kotlinx.android.synthetic.main.activity_child.*
 import javax.inject.Inject
 
 class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
 
-    @Inject
-    lateinit var countryQuery: CountryRepositoryImpl
-    lateinit var childViewModel: ChildViewModel
+
+    @Inject lateinit var viewModelFactory: ViewModelFactory
+    val childViewModel: ChildViewModel by lazy {ViewModelProvider(this, viewModelFactory).get(ChildViewModel::class.java)}
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("ResourceType")
-
     override fun setup() {
         (application as CountryApplication).appComponent.inject(this@ChildActivity)
         val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME).let { it ?: "" }
-        childViewModel = ViewModelProvider(this, ViewModelFactory(countryQuery,name))[ChildViewModel::class.java]
-        childViewModel.fetchCountryList()
+        childViewModel.fetchCountryList(name)
         observeLiveData()
-        showToolBarBackArrow(tb_child_activity)
+        showToolBarBackArrow(binding.tbChildActivity)
     }
 
     private fun MutableList<String>?.getList(text: String) = if (this.isNullOrEmpty()) {

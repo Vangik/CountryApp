@@ -8,7 +8,7 @@ import dagger.Component
 
 
 @Component(modules = [GraphQlModule::class, ViewModelFactoryModule::class])
-interface AppComponent {
+interface AppComponent{
     fun inject(mainActivity: MainActivity)
     fun inject(mainActivity: ChildActivity)
 }

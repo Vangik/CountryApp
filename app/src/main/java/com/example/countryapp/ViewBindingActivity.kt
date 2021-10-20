@@ -3,6 +3,7 @@ package com.example.countryapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.example.countryapp.databinding.*
 
 abstract class ViewBindingActivity<VB : ViewBinding> : AppCompatActivity() {
 

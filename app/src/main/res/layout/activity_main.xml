@@ -26,10 +26,9 @@
             </androidx.appcompat.widget.Toolbar>
 
             <com.example.countryapp.mainActivity.views.MainSearchView
-                android:id="@+id/test"
+                android:id="@+id/main_search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
             </com.example.countryapp.mainActivity.views.MainSearchView>
 
         </LinearLayout>

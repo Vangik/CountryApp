@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tv_child_activity_language_item"
+        android:id="@+id/tvLanguageItem"
         style="@style/TextView.Font.LanguageBackGround"
         android:layout_marginEnd="@dimen/short_backdown"
         android:paddingHorizontal="@dimen/short_backdown" />
