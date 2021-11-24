@@ -8,12 +8,12 @@ import com.example.countryapp.constants.Const
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.model.util.toCountryModel
 import com.example.countryapp.repository.CountryRepository
-import com.example.countryapp.repository.impl.CountryRepositoryImpl
 import com.example.countryapp.viewmodels.states.ViewState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class ChildViewModel (private var repository: CountryRepository) :
+class ChildViewModel @Inject constructor(private var repository: CountryRepository) :
     ViewModel() {
 
     private val countryDetails = MutableLiveData<ViewState<CountryModel>>()

@@ -1,53 +1,47 @@
-package com.example.countryapp.childActivity
+package com.example.countryapp.fragments
 
-import android.annotation.SuppressLint
-import android.os.Build
+import android.content.Context
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.*
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.countryapp.R
-import com.example.countryapp.childActivity.adapter.LanguageAdapter
+import com.example.countryapp.ViewBindingFragment
+import com.example.countryapp.adapters.LanguageAdapter
 import com.example.countryapp.constants.Const
-import com.example.countryapp.databinding.ActivityChildBinding
-import com.example.countryapp.ViewBindingActivity
-import com.example.countryapp.application.CountryApplication
+import com.example.countryapp.databinding.FragmentChildBinding
+import com.example.countryapp.mainActivity.MainActivity
 import com.example.countryapp.model.CountryLanguage
-import com.example.countryapp.viewmodels.ChildViewModel
-import com.example.countryapp.viewmodels.ViewModelFactory
+import com.example.countryapp.viewmodels.MainViewModel
 import com.example.countryapp.viewmodels.states.ViewState
-import javax.inject.Inject
-
-class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
 
 
-    @Inject lateinit var viewModelFactory: ViewModelFactory
-    val childViewModel: ChildViewModel by lazy {ViewModelProvider(this, viewModelFactory).get(ChildViewModel::class.java)}
+class ChildFragment : ViewBindingFragment<FragmentChildBinding>() {
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    var countryName: String? = null
+    val dataModel: MainViewModel by activityViewModels()
+
     override fun setup() {
-        (application as CountryApplication).appComponent.inject(this@ChildActivity)
-        val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME).let { it ?: "" }
-        childViewModel.fetchCountryList(name)
+        dataModel.fetchCountryList(countryName)
         observeLiveData()
         showToolBarBackArrow(binding.tbChildActivity)
+        (activity as MainActivity).showUpButton()
     }
 
     private fun MutableList<String>?.getList(text: String) = if (this.isNullOrEmpty()) {
         mutableListOf(text)
     } else this
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        arguments?.getString(Const.INTENT_COUNTRY_DETAILS_NAME).let {
+            countryName = it
+        }
     }
 
     private fun observeLiveData() {
-        childViewModel.getCountry().observe(this, Observer { response ->
+        dataModel.getCountry().observe(this, Observer { response ->
             when (response) {
                 is ViewState.Success -> {
                     response.value?.apply {
@@ -74,36 +68,36 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>() {
                     }
                 }
                 is ViewState.Error -> {
-                    Toast.makeText(this, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
                 }
             }
         })
     }
 
     private fun setRecyclerView(languageList: MutableList<CountryLanguage>) {
-        val languageAdapter = LanguageAdapter(languageList, this@ChildActivity)
+        val languageAdapter = LanguageAdapter(languageList, context)
         binding.rvChildActivityCountryLanguage.adapter = languageAdapter
         languageAdapter.submitList(languageList)
     }
 
     private fun showToolBarBackArrow(toolbar: Toolbar) {
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            this.title = ""
+        with((activity as MainActivity)){
+            setSupportActionBar(toolbar)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                this.title = ""
+            }
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            finish()
+    companion object {
+        @JvmStatic
+        fun newInstance(name: String) = ChildFragment().apply {
+            arguments = Bundle().apply {
+                putString(Const.INTENT_COUNTRY_DETAILS_NAME, name)
+            }
         }
-        return super.onOptionsItemSelected(item)
     }
 
-    override fun getViewBinding() = ActivityChildBinding.inflate(layoutInflater)
-
-
+    override fun getViewBinding() = FragmentChildBinding.inflate(layoutInflater)
 }
-
-
