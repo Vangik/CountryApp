@@ -1,286 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/seashell"
-tools:context=".mainActivity.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="52dp">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_child_activity"
-        style="@style/TextView.ToolBar.Background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/TextView.ToolBar"
-            android:text="@string/toolbar_text" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-
-    <ImageView
-        android:id="@+id/iv_child_activity_earth"
-        style="@style/TextView"
-        android:layout_below="@id/tb_child_activity"
-        android:src="@drawable/earth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tb_child_activity"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_child_activity_wings"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/pngwing_1"
-        app:layout_constraintTop_toBottomOf="@id/tb_child_activity"
-        tools:ignore="ContentDescription" />
+        android:layout_height="match_parent"
+        android:background="@color/seashell"
+        tools:context=".mainActivity.MainActivity">
 
-
-    <TextView
-        android:id="@+id/tv_child_activity_country_emoji"
-        style="@style/Emoji.Details"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_child_activity_wings" />
-
-    <ImageView
-        android:id="@+id/iv_ellipse1"
-        style="@style/TextView.EllipseMargin.Second"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_child_activity_country_emoji"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_vector1"
-        style="@style/TextView.EllipseMargin.Vector"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_ellipse1"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_ellipse2"
-        style="@style/TextView.EllipseMargin.First"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_vector1"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_vector2"
-        style="@style/TextView.EllipseMargin.Vector"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        android:layout_marginHorizontal="38dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_ellipse2"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_ellipse3"
-        style="@style/TextView.EllipseMargin.Second"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_vector2"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_vector3"
-        style="@style/TextView.EllipseMargin.Vector"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_ellipse3"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_ellipse4"
-        style="@style/TextView.EllipseMargin.First"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_vector3"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_vector4"
-        style="@style/TextView.EllipseMargin.Vector"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_ellipse4"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_ellipse5"
-        style="@style/TextView.EllipseMargin.Second"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_vector4"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_vector5"
-        style="@style/TextView.EllipseMargin.Vector"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_ellipse5"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_ellipse6"
-        style="@style/TextView.EllipseMargin.First"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_vector5"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_vector6"
-        style="@style/TextView.EllipseMargin.Vector"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_ellipse6"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/iv_ellipse7"
-        style="@style/TextView.EllipseMargin.Second"
-        android:layout_below="@id/tv_child_activity_country_emoji"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_vector6"
-        tools:ignore="ContentDescription" />
-
-    <LinearLayout
-        style="@style/LayoutSize.Vertical"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_child_activity_country_emoji">
-
-
-        <TextView
-            android:id="@+id/tv_child_activity_label_country"
-            style="@style/TextView.Font.Label.Details"
-            android:text="@string/country_name_label" />
-
-        <HorizontalScrollView
-            style="@style/LayoutSize"
-            android:layout_marginEnd="24dp">
-
-            <TextView
-                android:id="@+id/tv_child_activity_country_name"
-                style="@style/TextView.Font"
-                android:maxLines="1"
-                android:scrollHorizontally="true" />
-        </HorizontalScrollView>
-
-        <TextView
-            android:id="@+id/tv_child_activity_label_capital"
-            style="@style/TextView.Font.Label.Details"
-            android:layout_marginTop="20dp"
-            android:text="@string/country_capital_label" />
-
-        <HorizontalScrollView style="@style/LayoutSize">
-
-            <TextView
-                android:id="@+id/tv_child_activity_country_capital"
-                style="@style/TextView.Font"
-                android:maxLines="1"
-                android:scrollHorizontally="true" />
-        </HorizontalScrollView>
-
-        <TextView
-            android:id="@+id/tv_child_activity_label_region"
-            style="@style/TextView.Font.Label.Details"
-            android:layout_marginTop="24dp"
-            android:text="@string/country_region_label" />
-
-        <TextView
-            android:id="@+id/tv_child_activity_country_region"
-            style="@style/TextView.Font"
-            android:maxLines="1"
-            android:scrollHorizontally="true" />
-
-        <TextView
-            android:id="@+id/tv_child_activity_label_population"
-            style="@style/TextView.Font.Label.Details"
-            android:layout_marginTop="24dp"
-            android:text="@string/country_population_label" />
-
-        <HorizontalScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp">
+            android:paddingBottom="52dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tb_child_activity"
+                style="@style/TextView.ToolBar.Background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/TextView.ToolBar"
+                    android:text="@string/toolbar_text" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <ImageView
+                android:id="@+id/iv_child_activity_earth"
+                style="@style/TextView"
+                android:layout_below="@id/tb_child_activity"
+                android:src="@drawable/earth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tb_child_activity"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_child_activity_wings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="68dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pngwing_1"
+                app:layout_constraintTop_toBottomOf="@id/tb_child_activity"
+                tools:ignore="ContentDescription" />
+
 
             <TextView
-                android:id="@+id/tv_child_activity_country_population"
-                style="@style/TextView.Font"
-                android:maxLines="1"
-                android:scrollHorizontally="true" />
-        </HorizontalScrollView>
+                android:id="@+id/tv_child_activity_country_emoji"
+                style="@style/Emoji.Details"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_child_activity_wings" />
 
-        <TextView
-            android:id="@+id/tv_child_activity_label_currencies"
-            style="@style/TextView.Font.Label.Details"
-            android:layout_marginTop="20dp"
-            android:text="@string/country_currencies_label" />
+            <ImageView
+                android:id="@+id/iv_ellipse1"
+                style="@style/TextView.EllipseMargin.Second"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_child_activity_country_emoji"
+                tools:ignore="ContentDescription" />
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp">
+            <ImageView
+                android:id="@+id/iv_vector1"
+                style="@style/TextView.EllipseMargin.Vector"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_ellipse1"
+                tools:ignore="ContentDescription" />
 
-            <com.example.countryapp.views.CountryDetailsView
-                android:id="@+id/currencies_view"
-                style="@style/LayoutSize.Horizontal">
+            <ImageView
+                android:id="@+id/iv_ellipse2"
+                style="@style/TextView.EllipseMargin.First"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_vector1"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_vector2"
+                style="@style/TextView.EllipseMargin.Vector"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                android:layout_marginHorizontal="38dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_ellipse2"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_ellipse3"
+                style="@style/TextView.EllipseMargin.Second"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_vector2"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_vector3"
+                style="@style/TextView.EllipseMargin.Vector"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_ellipse3"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_ellipse4"
+                style="@style/TextView.EllipseMargin.First"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_vector3"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_vector4"
+                style="@style/TextView.EllipseMargin.Vector"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_ellipse4"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_ellipse5"
+                style="@style/TextView.EllipseMargin.Second"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_vector4"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_vector5"
+                style="@style/TextView.EllipseMargin.Vector"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_ellipse5"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_ellipse6"
+                style="@style/TextView.EllipseMargin.First"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_vector5"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_vector6"
+                style="@style/TextView.EllipseMargin.Vector"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_ellipse6"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/iv_ellipse7"
+                style="@style/TextView.EllipseMargin.Second"
+                android:layout_below="@id/tv_child_activity_country_emoji"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_vector6"
+                tools:ignore="ContentDescription" />
+
+            <LinearLayout
+                style="@style/LayoutSize.Vertical"
+                android:layout_marginStart="92dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_child_activity_country_emoji">
 
 
-            </com.example.countryapp.views.CountryDetailsView>
+                <TextView
+                    android:id="@+id/tv_child_activity_label_country"
+                    style="@style/TextView.Font.Label.Details"
+                    android:text="@string/country_name_label" />
 
-        </HorizontalScrollView>
+                <HorizontalScrollView
+                    style="@style/LayoutSize"
+                    android:layout_marginEnd="24dp">
 
-        <TextView
-            android:id="@+id/tv_child_activity_label_language"
-            style="@style/TextView.Font.Label.Details"
-            android:layout_marginTop="24dp"
-            android:text="@string/country_language_label" />
+                    <TextView
+                        android:id="@+id/tv_child_activity_country_name"
+                        style="@style/TextView.Font"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true" />
+                </HorizontalScrollView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_child_activity_country_language"
-            style="@style/LayoutSize.Horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                <TextView
+                    android:id="@+id/tv_child_activity_label_capital"
+                    style="@style/TextView.Font.Label.Details"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/country_capital_label" />
+
+                <HorizontalScrollView style="@style/LayoutSize">
+
+                    <TextView
+                        android:id="@+id/tv_child_activity_country_capital"
+                        style="@style/TextView.Font"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true" />
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/tv_child_activity_label_region"
+                    style="@style/TextView.Font.Label.Details"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/country_region_label" />
+
+                <TextView
+                    android:id="@+id/tv_child_activity_country_region"
+                    style="@style/TextView.Font"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true" />
+
+                <TextView
+                    android:id="@+id/tv_child_activity_label_population"
+                    style="@style/TextView.Font.Label.Details"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/country_population_label" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp">
+
+                    <TextView
+                        android:id="@+id/tv_child_activity_country_population"
+                        style="@style/TextView.Font"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true" />
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/tv_child_activity_label_currencies"
+                    style="@style/TextView.Font.Label.Details"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/country_currencies_label" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp">
+
+                    <com.example.countryapp.views.CountryDetailsView
+                        android:id="@+id/currencies_view"
+                        style="@style/LayoutSize.Horizontal">
 
 
-        <TextView
-            android:id="@+id/tv_child_activity_label_callingcodes"
-            style="@style/TextView.Font.Label.Details"
-            android:layout_marginTop="20dp"
-            android:text="@string/country_calling_code_label" />
+                    </com.example.countryapp.views.CountryDetailsView>
 
-        <HorizontalScrollView style="@style/LayoutSize">
+                </HorizontalScrollView>
 
-            <com.example.countryapp.views.CountryDetailsView
-                android:id="@+id/calling_code_view"
-                style="@style/LayoutSize.Horizontal">
-            </com.example.countryapp.views.CountryDetailsView>
+                <TextView
+                    android:id="@+id/tv_child_activity_label_language"
+                    style="@style/TextView.Font.Label.Details"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/country_language_label" />
 
-        </HorizontalScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_child_activity_country_language"
+                    style="@style/LayoutSize.Horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_child_activity_label_callingcodes"
+                    style="@style/TextView.Font.Label.Details"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/country_calling_code_label" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                <HorizontalScrollView style="@style/LayoutSize">
+
+                    <com.example.countryapp.views.CountryDetailsView
+                        android:id="@+id/calling_code_view"
+                        style="@style/LayoutSize.Horizontal"></com.example.countryapp.views.CountryDetailsView>
+
+                </HorizontalScrollView>
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

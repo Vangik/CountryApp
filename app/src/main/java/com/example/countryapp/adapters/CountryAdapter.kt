@@ -35,12 +35,12 @@ class CountryAdapter(
         val country = countryFilterList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
-            (context as MainActivity)
-                .supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container, ChildFragment.newInstance(country.countryCode))
-                .addToBackStack(null)
-                .commit()
+//            (context as MainActivity)
+//                .supportFragmentManager
+//                .beginTransaction()
+//                .replace(R.id.fragment_container, ChildFragment.newInstance(country.countryCode))
+//                .addToBackStack(null)
+//                .commit()
             }
         }
 

@@ -1,7 +1,10 @@
 package com.example.countryapp.mainActivity
 
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.countryapp.ViewBindingActivity
 import com.example.countryapp.application.CountryApplication
@@ -11,11 +14,10 @@ import javax.inject.Inject
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.countryapp.R
-import com.example.countryapp.databinding.ActivityMainBinding
 import com.example.countryapp.fragments.MainFragment
 
 
-class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
+class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -27,12 +29,14 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
         )[MainViewModel::class.java]
     }
 
-    override fun setup(): Unit = with(binding) {
-        (application as CountryApplication).appComponent.inject(this@MainActivity)
-        mainViewModel.fetchCountryList()
-        startFragment(MainFragment.newInstance(), R.id.fragment_container)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        //mainViewModel.fetchCountryList()
+        //actionBar?.setDisplayHomeAsUpEnabled(true)
+        //startFragment(MainFragment.newInstance(), R.id.fragment_container)
     }
+
 
     private fun startFragment(f: Fragment, idHolder: Int){
         supportFragmentManager
@@ -55,7 +59,5 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
     fun showUpButton(){ supportActionBar?.setDisplayHomeAsUpEnabled(true)}
     fun hideUpButton(){ supportActionBar?.setDisplayHomeAsUpEnabled(false)}
-
-    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
 }

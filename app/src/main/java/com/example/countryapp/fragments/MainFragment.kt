@@ -1,29 +1,47 @@
 package com.example.countryapp.fragments
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.example.countryapp.ViewBindingFragment
+import com.example.countryapp.R
 import com.example.countryapp.constants.Const
-import com.example.countryapp.databinding.FragmentMainBinding
 import com.example.countryapp.adapters.CountryAdapter
+import com.example.countryapp.databinding.FragmentMainBinding
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.viewmodels.MainViewModel
 import com.example.countryapp.viewmodels.states.ViewState
 import com.example.countryapp.mainActivity.MainActivity
 
 
-class MainFragment : ViewBindingFragment<FragmentMainBinding>(), FragmentManager.OnBackStackChangedListener {
+class MainFragment : Fragment(), FragmentManager.OnBackStackChangedListener {
 
+    private lateinit var binding: FragmentMainBinding
     private val dataModel: MainViewModel by activityViewModels()
 
-    override fun setup() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+
+        // Inflate view and obtain an instance of the binding class
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_main,
+            container,
+            false
+        )
+
         dataModel.fetchCountryList()
         activity?.supportFragmentManager?.addOnBackStackChangedListener(this)
         observeLiveData()
+
+        return binding.root
     }
 
     private fun observeLiveData() {
@@ -74,5 +92,4 @@ class MainFragment : ViewBindingFragment<FragmentMainBinding>(), FragmentManager
         }
     }
 
-    override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
 }

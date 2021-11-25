@@ -1,65 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+<layout>
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/countrycard_background">
+        android:background="@color/white">
 
-        <TextView
-            android:id="@+id/tv_main_activity_country_emoji"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            style="@style/Emoji"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/countrycard_background">
 
-        <TextView
-            android:id="@+id/tv_main_activity_country_label_name"
-            style="@style/TextView.Font.Label"
-            android:layout_marginTop="12dp"
-            android:layout_toEndOf="@id/tv_main_activity_country_emoji"
-            android:text="@string/country_name_label" />
+            <TextView
+                android:id="@+id/tv_main_activity_country_emoji"
+                style="@style/Emoji"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp" />
 
-        <TextView
-            android:id="@+id/tv_main_activity_country_name"
-            style="@style/TextView.Font.Title"
-            android:layout_below="@id/tv_main_activity_country_label_name"
-            android:layout_toEndOf="@id/tv_main_activity_country_emoji"
-            android:ellipsize="marquee"
-            android:maxLines="1"
-            android:paddingStart="0dp"
-            android:paddingEnd="12dp" />
+            <TextView
+                android:id="@+id/tv_main_activity_country_label_name"
+                style="@style/TextView.Font.Label"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@id/tv_main_activity_country_emoji"
+                android:text="@string/country_name_label" />
+
+            <TextView
+                android:id="@+id/tv_main_activity_country_name"
+                style="@style/TextView.Font.Title"
+                android:layout_below="@id/tv_main_activity_country_label_name"
+                android:layout_toEndOf="@id/tv_main_activity_country_emoji"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:paddingStart="0dp"
+                android:paddingEnd="12dp" />
 
 
-        <TextView
-            android:id="@+id/tv_main_activity_country_label_capital"
-            style="@style/TextView.Font.Label"
-            android:layout_below="@id/tv_main_activity_country_name"
-            android:layout_toEndOf="@id/tv_main_activity_country_emoji"
-            android:text="@string/country_capital_label" />
+            <TextView
+                android:id="@+id/tv_main_activity_country_label_capital"
+                style="@style/TextView.Font.Label"
+                android:layout_below="@id/tv_main_activity_country_name"
+                android:layout_toEndOf="@id/tv_main_activity_country_emoji"
+                android:text="@string/country_capital_label" />
 
-        <TextView
-            android:id="@+id/tv_main_activity_country_capital"
-            style="@style/TextView.Font"
-            android:layout_below="@id/tv_main_activity_country_label_capital"
-            android:layout_toEndOf="@id/tv_main_activity_country_emoji" />
+            <TextView
+                android:id="@+id/tv_main_activity_country_capital"
+                style="@style/TextView.Font"
+                android:layout_below="@id/tv_main_activity_country_label_capital"
+                android:layout_toEndOf="@id/tv_main_activity_country_emoji" />
 
-        <TextView
-            android:id="@+id/tv_main_activity_country_label_region"
-            style="@style/TextView.Font.Label"
-            android:layout_below="@id/tv_main_activity_country_capital"
-            android:layout_toEndOf="@id/tv_main_activity_country_emoji"
-            android:text="@string/country_region_label" />
+            <TextView
+                android:id="@+id/tv_main_activity_country_label_region"
+                style="@style/TextView.Font.Label"
+                android:layout_below="@id/tv_main_activity_country_capital"
+                android:layout_toEndOf="@id/tv_main_activity_country_emoji"
+                android:text="@string/country_region_label" />
 
-        <TextView
-            android:id="@+id/tv_main_activity_country_region"
-            style="@style/TextView.Font"
-            android:layout_below="@id/tv_main_activity_country_label_region"
-            android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@id/tv_main_activity_country_emoji" />
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tv_main_activity_country_region"
+                style="@style/TextView.Font"
+                android:layout_below="@id/tv_main_activity_country_label_region"
+                android:layout_marginBottom="12dp"
+                android:layout_toEndOf="@id/tv_main_activity_country_emoji" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
