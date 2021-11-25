@@ -30,8 +30,9 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
     override fun setup(): Unit = with(binding) {
         (application as CountryApplication).appComponent.inject(this@MainActivity)
         mainViewModel.fetchCountryList()
-        startFragment(MainFragment.newInstance(), R.id.fragment_container)
+        startFragment(MainFragment.newInstance(), R.id.country_list)
         actionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
     private fun startFragment(f: Fragment, idHolder: Int){

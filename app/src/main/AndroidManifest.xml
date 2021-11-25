@@ -12,7 +12,6 @@
         android:label="CountryApp"
         android:largeHeap="true"
         android:roundIcon="@drawable/earth"
-        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.CountryApp">
 

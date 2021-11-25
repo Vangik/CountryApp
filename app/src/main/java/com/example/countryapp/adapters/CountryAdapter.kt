@@ -2,6 +2,8 @@ package com.example.countryapp.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.ActivityInfo
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -31,18 +33,37 @@ class CountryAdapter(
         return CountryViewHolder(inflater)
     }
 
-    override fun onBindViewHolder(holder: CountryViewHolder, @SuppressLint("RecyclerView") position: Int) {
+    override fun onBindViewHolder(
+        holder: CountryViewHolder,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         val country = countryFilterList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
-            (context as MainActivity)
-                .supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container, ChildFragment.newInstance(country.countryCode))
-                .addToBackStack(null)
-                .commit()
+            if ((context as MainActivity).resources.configuration.orientation != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT ) {
+                context
+                    .supportFragmentManager
+                    .beginTransaction()
+                    .add(
+                        R.id.country_details,
+                        ChildFragment.newInstance(country.countryCode)
+                    )
+                    .addToBackStack(null)
+                    .commit()
+                Log.v("Tag", "Landscape")
+            } else {
+
+                context
+                    .supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.country_list, ChildFragment.newInstance(country.countryCode))
+                    .addToBackStack(null)
+                    .commit()
+                Log.v("Tag", "Portrait")
             }
         }
+    }
+
 
     override fun getItemCount(): Int {
         return countryFilterList.size
@@ -72,7 +93,7 @@ class CountryAdapter(
                     countryList.forEach {
                         if (it.countryName.lowercase(Locale.ROOT)
                                 .contains(charSearch.lowercase(Locale.ROOT))
-                        ){
+                        ) {
                             resultList.add(it)
                         }
                     }
