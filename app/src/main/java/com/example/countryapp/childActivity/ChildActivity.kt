@@ -1,11 +1,15 @@
 package com.example.countryapp.childActivity
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.*
+import com.example.countryapp.CountryDetailsBroadCast
 import com.example.countryapp.R
 import com.example.countryapp.childActivity.adapter.LanguageAdapter
 import com.example.countryapp.constants.Const
@@ -24,6 +28,7 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
     private lateinit var languageList: MutableList<CountryLanguage>
     private lateinit var countryDetails: CountryModel
     private lateinit var childPresenter: ChildPresenter
+    private lateinit var broadcastReceiver: BroadcastReceiver
 
     @Inject
     lateinit var countryRepositoryImpl: CountryRepositoryImpl
@@ -32,12 +37,15 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
 
     override fun setup() {
         (application as CountryApplication).appComponent.inject(this@ChildActivity)
-
         childPresenter = ChildPresenter(this, countryRepositoryImpl)
-        val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME)
-        if (name != null) {
-            childPresenter.fetchCountryDetails(name)
-        }
+        broadcastReceiver = CountryDetailsBroadCast(childPresenter)
+        val intentFilter = IntentFilter("test.sendData.CountryApp")
+        intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
+        registerReceiver(broadcastReceiver, intentFilter)
+        //val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME)
+//        if (name != null) {
+//            childPresenter.fetchCountryDetails(name)
+//        }
         showToolBarBackArrow(tb_child_activity)
 
     }
@@ -45,6 +53,15 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
     private fun MutableList<String>?.getList(text: String) = if (this.isNullOrEmpty()) {
         mutableListOf(text)
     } else this
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(broadcastReceiver)
+    }
 
     private fun showToolBarBackArrow(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
