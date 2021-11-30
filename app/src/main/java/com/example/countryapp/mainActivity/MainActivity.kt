@@ -24,8 +24,9 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>(), MainContract.Vi
         (application as CountryApplication).appComponent.inject(this@MainActivity)
         mainPresenter = MainPresenter(this@MainActivity, countryQuery)
         mainPresenter.getCountryList()
-
     }
+
+
 
     override fun showCountryList(list: MutableList<CountryModel>) {
         this.countryList = list

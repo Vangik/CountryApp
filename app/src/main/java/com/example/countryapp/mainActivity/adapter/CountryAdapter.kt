@@ -25,9 +25,13 @@ class CountryAdapter(
         val country = countryList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ChildActivity::class.java)
-            intent.putExtra(Const.INTENT_COUNTRY_DETAILS_NAME, country.countryCode)
-            context.startActivity(intent)
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Const.INTENT_COUNTRY_DETAILS_NAME, country.countryCode)
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            context.startActivity(shareIntent)
         }
     }
 
