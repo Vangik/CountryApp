@@ -1,19 +1,17 @@
-package com.example.countryapp.childActivity.adapter
+package com.example.countryapp.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.countryapp.R
 import com.example.countryapp.constants.Const
 import com.example.countryapp.databinding.LanguageDetailsBinding
 import com.example.countryapp.model.CountryLanguage
 
 class LanguageAdapter(
     private val languageList: MutableList<CountryLanguage>,
-    private val context: Context
+    private val context: Context?
 ) :
     ListAdapter<CountryLanguage, LanguageAdapter.LanguageViewHolder>(LanguageDiffUtilCallback()) {
 

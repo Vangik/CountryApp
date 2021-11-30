@@ -1,62 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".mainActivity.MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <FrameLayout
+        android:id="@+id/country_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+    </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/seashell"
-            android:orientation="vertical"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <androidx.appcompat.widget.Toolbar style="@style/TextView.ToolBar.Background">
-
-                <TextView
-                    style="@style/TextView.ToolBar"
-                    android:text="@string/toolbar_text" />
-            </androidx.appcompat.widget.Toolbar>
-
-            <com.example.countryapp.mainActivity.views.MainSearchView
-                android:id="@+id/main_search_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </com.example.countryapp.mainActivity.views.MainSearchView>
-
-        </LinearLayout>
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/country_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/seashell"
-            app:queryHint="@string/search_hint"
-            app:iconifiedByDefault="false"
-            android:visibility="gone"
-            app:queryBackground="@null" />
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main_activity_country_details"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-    <ProgressBar
-        android:id="@+id/pb_main_activity"
-        style="@style/TextView"
-        android:layout_centerInParent="true"
-        android:visibility="invisible" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

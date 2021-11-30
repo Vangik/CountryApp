@@ -12,15 +12,8 @@
         android:label="CountryApp"
         android:largeHeap="true"
         android:roundIcon="@drawable/earth"
-        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.CountryApp">
-
-        <activity
-            android:name=".childActivity.ChildActivity"
-            android:exported="true"
-            android:parentActivityName=".mainActivity.MainActivity">
-        </activity>
 
         <activity
             android:name=".mainActivity.MainActivity"

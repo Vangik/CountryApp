@@ -15,6 +15,7 @@ import dagger.Provides
 @Module
 class GraphQlModule {
 
+
     @Provides
     fun provideGraphQlRepository(): ApolloClient {
         val cacheFactory = LruNormalizedCacheFactory(
