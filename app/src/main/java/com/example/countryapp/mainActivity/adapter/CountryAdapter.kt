@@ -25,15 +25,13 @@ class CountryAdapter(
         val country = countryList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
-            val intent = Intent()
-            intent.apply {
-                action = "test.sendData.CountryApp"
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
                 putExtra(Const.INTENT_COUNTRY_DETAILS_NAME, country.countryCode)
-                addCategory(Intent.CATEGORY_DEFAULT)
-                setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                type = "text/plain"
             }
-            context.sendBroadcast(intent)
-
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            context.startActivity(shareIntent)
         }
     }
 
