@@ -1,11 +1,15 @@
 package com.example.countryapp.childActivity
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.*
+import com.example.countryapp.CountryDetailsBroadCast
 import com.example.countryapp.R
 import com.example.countryapp.childActivity.adapter.LanguageAdapter
 import com.example.countryapp.constants.Const
@@ -32,11 +36,13 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
 
     override fun setup() {
         (application as CountryApplication).appComponent.inject(this@ChildActivity)
-
         childPresenter = ChildPresenter(this, countryRepositoryImpl)
-        val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME)
-        if (name != null) {
-            childPresenter.fetchCountryDetails(name)
+        //val intentFilter = IntentFilter("test.sendData.CountryApp")
+       // intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
+
+        if (intent?.action == Intent.ACTION_SEND){
+            val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME)
+            name?.let { childPresenter.fetchCountryDetails(it) }
         }
         showToolBarBackArrow(tb_child_activity)
 
@@ -45,6 +51,14 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
     private fun MutableList<String>?.getList(text: String) = if (this.isNullOrEmpty()) {
         mutableListOf(text)
     } else this
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
     private fun showToolBarBackArrow(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
