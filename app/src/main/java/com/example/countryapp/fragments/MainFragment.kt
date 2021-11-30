@@ -1,48 +1,41 @@
 package com.example.countryapp.fragments
 
+import android.os.Bundle
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.countryapp.ViewBindingFragment
 import com.example.countryapp.constants.Const
 import com.example.countryapp.databinding.FragmentMainBinding
 import com.example.countryapp.adapters.CountryAdapter
+import com.example.countryapp.application.CountryApplication
+import com.example.countryapp.di.components.DaggerAppComponent
 import com.example.countryapp.model.CountryModel
 import com.example.countryapp.viewmodels.MainViewModel
 import com.example.countryapp.viewmodels.states.ViewState
 import com.example.countryapp.mainActivity.MainActivity
+import com.example.countryapp.model.util.toCountryModel
+import com.example.countryapp.repository.impl.CountryRepositoryImpl
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
 
 class MainFragment : ViewBindingFragment<FragmentMainBinding>(), FragmentManager.OnBackStackChangedListener {
 
-    private val dataModel: MainViewModel by activityViewModels()
+    @Inject
+    lateinit var repository: CountryRepositoryImpl
 
     override fun setup() {
-        dataModel.fetchCountryList()
+        DaggerAppComponent.builder().build().inject(this)
+        fetchCountryList()
         activity?.supportFragmentManager?.addOnBackStackChangedListener(this)
-        observeLiveData()
     }
 
-    private fun observeLiveData() {
-        dataModel.getCountryList().observe(this, Observer { response ->
-            when (response) {
-                is ViewState.Loading -> {
-                    binding.pbMainActivity.visibility = View.VISIBLE
-                }
-                is ViewState.Success -> {
-                    binding.pbMainActivity.visibility = View.GONE
-                    response.value?.let { setRecyclerView(it) }
-                }
-                is ViewState.Error -> {
-                    Toast.makeText(context, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
-                }
-                else -> Toast.makeText(context, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 
     private fun setRecyclerView(languageList: List<CountryModel>) {
         val countryAdapter = CountryAdapter(languageList, context)
@@ -62,8 +55,13 @@ class MainFragment : ViewBindingFragment<FragmentMainBinding>(), FragmentManager
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance() = MainFragment()
+        var fragment: MainFragment? = null
+        fun newInstance() : MainFragment? {
+            if (fragment == null){
+                fragment = MainFragment()
+            }
+            return fragment
+        }
     }
 
     override fun onBackStackChanged() {
@@ -74,5 +72,16 @@ class MainFragment : ViewBindingFragment<FragmentMainBinding>(), FragmentManager
         }
     }
 
+    private fun fetchCountryList() {
+        repository.getCountryList().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ response ->
+                response.data?.countries?.map { it.toCountryModel() }?.let { setRecyclerView(it) }
+            }, {
+                Toast.makeText(context, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
+            })
+    }
+
     override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
+
 }

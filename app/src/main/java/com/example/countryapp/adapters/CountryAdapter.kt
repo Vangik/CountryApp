@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countryapp.R
@@ -40,7 +41,7 @@ class CountryAdapter(
         val country = countryFilterList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
-            if ((context as MainActivity).resources.configuration.orientation != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT ) {
+            if ((context as MainActivity).resources.configuration.orientation != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
                 context
                     .supportFragmentManager
                     .beginTransaction()
@@ -48,18 +49,32 @@ class CountryAdapter(
                         R.id.country_details,
                         ChildFragment.newInstance(country.countryCode)
                     )
-                    .addToBackStack(null)
+                    .addToBackStack("listFragment")
                     .commit()
                 Log.v("Tag", "Landscape")
             } else {
 
-                context
-                    .supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.country_list, ChildFragment.newInstance(country.countryCode))
-                    .addToBackStack(null)
-                    .commit()
+                val list = context.supportFragmentManager.fragments
+                val fragment = context.supportFragmentManager.findFragmentByTag("myTag")
+
+                if (fragment == null)
+                    context
+                        .supportFragmentManager
+                        .beginTransaction()
+                        .add(R.id.country_list, ChildFragment.newInstance(country.countryCode), "myTag")
+                        .addToBackStack("myTag")
+                        .commit()
+                else {
+                    context
+                        .supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.country_list, ChildFragment.newInstance(country.countryCode), "myTag")
+                        .addToBackStack("myTag")
+                        .commit()
+                }
+
                 Log.v("Tag", "Portrait")
+                Log.v("Tag2", list.size.toString())
             }
         }
     }
