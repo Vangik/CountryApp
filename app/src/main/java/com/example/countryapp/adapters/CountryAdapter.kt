@@ -16,7 +16,7 @@ import com.example.countryapp.model.CountryModel
 import java.util.*
 
 class CountryAdapter(
-    private val countryList: List<CountryModel>, private val context: Context?
+    private val countryList: List<CountryModel>, private val context: Context?, private val listener: RvOnClockListener
 ) : ListAdapter<CountryModel, CountryAdapter.CountryViewHolder>(CountryDiffUtilCallback()),
     Filterable {
 
@@ -35,6 +35,7 @@ class CountryAdapter(
         val country = countryFilterList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
+            listener.onClick(position)
 //            (context as MainActivity)
 //                .supportFragmentManager
 //                .beginTransaction()
@@ -46,6 +47,10 @@ class CountryAdapter(
 
     override fun getItemCount(): Int {
         return countryFilterList.size
+    }
+
+    interface RvOnClockListener{
+        fun onClick(position: Int)
     }
 
 

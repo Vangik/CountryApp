@@ -1,69 +1,56 @@
 package com.example.countryapp.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.countryapp.R
 import com.example.countryapp.constants.Const
 import com.example.countryapp.adapters.CountryAdapter
 import com.example.countryapp.databinding.FragmentMainBinding
+import com.example.countryapp.di.components.DaggerAppComponent
 import com.example.countryapp.model.CountryModel
-import com.example.countryapp.viewmodels.MainViewModel
-import com.example.countryapp.viewmodels.states.ViewState
-import com.example.countryapp.mainActivity.MainActivity
+import com.example.countryapp.model.util.toCountryModel
+import com.example.countryapp.repository.impl.CountryRepositoryImpl
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
 
-class MainFragment : Fragment(), FragmentManager.OnBackStackChangedListener {
+class MainFragment : Fragment(R.layout.fragment_main),
+    CountryAdapter.RvOnClockListener {
 
     private lateinit var binding: FragmentMainBinding
-    private val dataModel: MainViewModel by activityViewModels()
+    private var list = emptyList<CountryModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    @Inject
+    lateinit var repository: CountryRepositoryImpl
 
-        // Inflate view and obtain an instance of the binding class
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_main,
-            container,
-            false
-        )
-
-        dataModel.fetchCountryList()
-        activity?.supportFragmentManager?.addOnBackStackChangedListener(this)
-        observeLiveData()
-
-        return binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentMainBinding.bind(view)
+        DaggerAppComponent.builder().build().inject(this)
+        fetchCountryList()
+        binding.aboutButton.setOnClickListener { openAbout() }
     }
 
-    private fun observeLiveData() {
-        dataModel.getCountryList().observe(this, Observer { response ->
-            when (response) {
-                is ViewState.Loading -> {
-                    binding.pbMainActivity.visibility = View.VISIBLE
-                }
-                is ViewState.Success -> {
-                    binding.pbMainActivity.visibility = View.GONE
-                    response.value?.let { setRecyclerView(it) }
-                }
-                is ViewState.Error -> {
-                    Toast.makeText(context, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
-                }
-                else -> Toast.makeText(context, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
-            }
-        })
+    private fun fetchCountryList() {
+        repository.getCountryList().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ response ->
+                response.data?.countries?.map { it.toCountryModel() }?.let { list = it }
+                setRecyclerView(list)
+            }, {
+                Toast.makeText(context, Const.ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
+            })
     }
+
 
     private fun setRecyclerView(languageList: List<CountryModel>) {
-        val countryAdapter = CountryAdapter(languageList, context)
+        val countryAdapter = CountryAdapter(languageList, context, this)
         binding.rvMainActivityCountryDetails.adapter = countryAdapter
         countryAdapter.submitList(languageList)
         binding.countrySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
@@ -78,18 +65,13 @@ class MainFragment : Fragment(), FragmentManager.OnBackStackChangedListener {
             }
         })
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = MainFragment()
+    private fun openAbout(){
+        findNavController().navigate(R.id.action_mainFragment_to_aboutFragment)
     }
 
-    override fun onBackStackChanged() {
-        if(activity != null){
-            if (activity!!.supportFragmentManager.backStackEntryCount < 1) {
-                (activity as MainActivity).hideUpButton()
-            }
-        }
+    override fun onClick(position: Int) {
+        findNavController().navigate(R.id.action_mainFragment_to_childFragment,
+            bundleOf(Const.INTENT_COUNTRY_DETAILS_NAME to list[position].countryCode))
     }
 
 }
