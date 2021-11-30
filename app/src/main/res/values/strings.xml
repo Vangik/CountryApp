@@ -1,6 +1,8 @@
 <resources>
     <string name="the_list_will_be_here">The list will be here!!!</string>
     <string name="toolbar_text">Country List</string>
+    <string name="toolbar_about_text">About app</string>
+    <string name="about_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="call_text">Choose a card :)</string>
     <string name="country_name_label">Country</string>
     <string name="country_capital_label">Capital</string>

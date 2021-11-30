@@ -12,10 +12,10 @@
 
         <TextView
             android:id="@+id/tv_main_activity_country_emoji"
+            style="@style/Emoji"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            style="@style/Emoji"/>
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/tv_main_activity_country_label_name"

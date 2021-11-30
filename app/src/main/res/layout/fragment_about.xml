@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/seashell"
+    android:orientation="vertical"
+    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+    tools:context="com.example.countryapp.fragments.AboutFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_child_activity"
+        style="@style/TextView.ToolBar.Background">
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/back_arrow_icon"
+            android:textColor="@color/straw"
+            app:backgroundTint="@color/mine_shaft" />
+
+        <TextView
+            style="@style/TextView.ToolBar"
+            android:text="@string/toolbar_about_text" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_text" />
+</LinearLayout>

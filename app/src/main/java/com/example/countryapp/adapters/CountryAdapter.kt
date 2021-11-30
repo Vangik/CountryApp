@@ -1,21 +1,22 @@
-package com.example.countryapp.mainActivity.adapter
+package com.example.countryapp.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.countryapp.childActivity.ChildActivity
-import com.example.countryapp.constants.Const
+import com.example.countryapp.R
 import com.example.countryapp.databinding.CountryListItemBinding
+import com.example.countryapp.fragments.ChildFragment
+import com.example.countryapp.mainActivity.MainActivity
 import com.example.countryapp.model.CountryModel
 import java.util.*
 
 class CountryAdapter(
-    private val countryList: List<CountryModel>, private val context: Context
+    private val countryList: List<CountryModel>, private val context: Context?, private val listener: RvOnClockListener
 ) : ListAdapter<CountryModel, CountryAdapter.CountryViewHolder>(CountryDiffUtilCallback()),
     Filterable {
 
@@ -30,18 +31,26 @@ class CountryAdapter(
         return CountryViewHolder(inflater)
     }
 
-    override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CountryViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val country = countryFilterList[position]
         holder.bindItems(country)
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ChildActivity::class.java)
-            intent.putExtra(Const.INTENT_COUNTRY_DETAILS_NAME, country.countryCode)
-            context.startActivity(intent)
+            listener.onClick(position)
+//            (context as MainActivity)
+//                .supportFragmentManager
+//                .beginTransaction()
+//                .replace(R.id.fragment_container, ChildFragment.newInstance(country.countryCode))
+//                .addToBackStack(null)
+//                .commit()
+            }
         }
-    }
 
     override fun getItemCount(): Int {
         return countryFilterList.size
+    }
+
+    interface RvOnClockListener{
+        fun onClick(position: Int)
     }
 
 

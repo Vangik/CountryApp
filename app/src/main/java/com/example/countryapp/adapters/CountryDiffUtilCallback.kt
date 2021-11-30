@@ -1,4 +1,4 @@
-package com.example.countryapp.mainActivity.adapter
+package com.example.countryapp.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.countryapp.model.CountryModel

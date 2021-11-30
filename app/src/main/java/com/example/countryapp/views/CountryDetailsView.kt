@@ -1,4 +1,4 @@
-package com.example.countryapp.childActivity.views
+package com.example.countryapp.views
 
 import android.content.Context
 import android.graphics.Typeface
