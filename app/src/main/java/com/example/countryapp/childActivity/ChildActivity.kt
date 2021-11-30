@@ -28,7 +28,6 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
     private lateinit var languageList: MutableList<CountryLanguage>
     private lateinit var countryDetails: CountryModel
     private lateinit var childPresenter: ChildPresenter
-    private lateinit var broadcastReceiver: BroadcastReceiver
 
     @Inject
     lateinit var countryRepositoryImpl: CountryRepositoryImpl
@@ -38,14 +37,13 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
     override fun setup() {
         (application as CountryApplication).appComponent.inject(this@ChildActivity)
         childPresenter = ChildPresenter(this, countryRepositoryImpl)
-        broadcastReceiver = CountryDetailsBroadCast(childPresenter)
-        val intentFilter = IntentFilter("test.sendData.CountryApp")
-        intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
-        registerReceiver(broadcastReceiver, intentFilter)
-        //val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME)
-//        if (name != null) {
-//            childPresenter.fetchCountryDetails(name)
-//        }
+        //val intentFilter = IntentFilter("test.sendData.CountryApp")
+       // intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
+
+        if (intent?.action == Intent.ACTION_SEND){
+            val name = intent.extras?.getString(Const.INTENT_COUNTRY_DETAILS_NAME)
+            name?.let { childPresenter.fetchCountryDetails(it) }
+        }
         showToolBarBackArrow(tb_child_activity)
 
     }
@@ -60,7 +58,6 @@ class ChildActivity : ViewBindingActivity<ActivityChildBinding>(), ChildContract
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(broadcastReceiver)
     }
 
     private fun showToolBarBackArrow(toolbar: Toolbar) {

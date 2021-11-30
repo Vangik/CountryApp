@@ -15,17 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CountryApp">
 
-        <receiver
-            android:name=".CountryDetailsBroadCast"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="test.sendData.CountryApp"/>
-            </intent-filter>
-
-        </receiver>
-
-
         <activity
             android:name=".childActivity.ChildActivity"
             android:exported="true">
@@ -33,6 +22,12 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
 
