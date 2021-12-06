@@ -7,16 +7,37 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.sqlite.MainFragment"
+        android:name="com.example.sqlite.fragments.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_childFragment"
-            app:destination="@id/childFragment" />
+            app:destination="@id/childFragment">
+            <argument
+                android:name="countryId"
+                android:defaultValue="-1"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/childFragment"
-        android:name="com.example.sqlite.ChildFragment"
+        android:name="com.example.sqlite.fragments.ChildFragment"
         android:label="fragment_child"
-        tools:layout="@layout/fragment_child" />
+        tools:layout="@layout/fragment_child">
+        <action
+            android:id="@+id/action_childFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment">
+            <argument
+                android:name="countryId"
+                android:defaultValue="-1"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.sqlite.fragments.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+
+    </fragment>
 </navigation>
