@@ -75,4 +75,30 @@
         android:textColor="@color/black"
         app:cornerRadius="20dp" />
 
+    <EditText
+        android:id="@+id/et_sharePref"
+        android:layout_width="116dp"
+        android:layout_height="wrap_content"
+        android:ems="20"
+        android:hint="input"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/tv_sharePref"
+        android:layout_width="116dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        tools:text="@tools:sample/lorem" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sharePref_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_200"
+        android:text="SharedPreference"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp" />
+
 </LinearLayout>

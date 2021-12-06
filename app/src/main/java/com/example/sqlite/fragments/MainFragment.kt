@@ -1,53 +1,57 @@
 package com.example.sqlite.fragments
 
+import android.content.Context
 import android.os.Bundle
-import android.provider.ContactsContract
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.sqlite.MainActivity
 import com.example.sqlite.R
 import com.example.sqlite.databinding.FragmentMainBinding
 import com.example.sqlite.db.CountryDbManager
-import com.example.sqlite.model.DataModel
+import com.example.sqlite.db.dto.CountryEntity
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     lateinit var binding: FragmentMainBinding
-    private var dbManger: CountryDbManager? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainBinding.bind(view)
-        dbManger = context?.let { CountryDbManager(it) }
-        dbManger?.openDb()
-        binding.buttonAddToDb.setOnClickListener { sendDataToDb() }
+        binding.buttonAddToDb.setOnClickListener { saveDataToDb() }
         binding.buttonShowDb.setOnClickListener { showDataFromDb() }
+
     }
 
-    private fun sendDataToDb() {
-        when {
-            dbManger?.checkIsDataAlreadyInDb(binding.editText.text.toString()) == true -> {
-                Toast.makeText(context, "Country is already exist", Toast.LENGTH_SHORT).show()
-            }
-            binding.editText.text.isNotEmpty() -> {
-                dbManger?.insertToDb(binding.editText.text.toString())
+    private fun saveDataToDb() {
+
+        (context as MainActivity).db.countryDao().insertCountry(
+            CountryEntity(
+                name = binding.editText.text.toString(),
+                capital = null,
+                region = null,
+                currency = null,
+                language = null,
+                test = null
+            )
+        ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+            {
                 Toast.makeText(context, "${binding.editText.text} added", Toast.LENGTH_LONG).show()
                 binding.editText.text.clear()
+
+
+            }, {
+                Toast.makeText(context, "Country is already exist", Toast.LENGTH_SHORT).show()
             }
-            else -> {
-                Toast.makeText(context, "Input country name", Toast.LENGTH_SHORT).show()
-            }
-        }
+        )
     }
 
     private fun showDataFromDb() {
         findNavController().navigate(R.id.action_mainFragment_to_childFragment)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        dbManger?.closeDb()
-    }
 }

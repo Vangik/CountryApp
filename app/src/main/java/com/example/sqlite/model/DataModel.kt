@@ -1,6 +1,6 @@
 package com.example.sqlite.model
 
-data class DataModel(
+data class DataModel (
     val countryId: Int = 0,
     val name: String,
     val capital: String?,

@@ -31,6 +31,10 @@
                 android:name="countryId"
                 android:defaultValue="-1"
                 app:argType="integer" />
+            <argument
+                android:name="countryName"
+                android:defaultValue=""
+                app:argType="string" />
         </action>
     </fragment>
     <fragment
