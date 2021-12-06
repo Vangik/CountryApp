@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sqlite.model.DataModel
 import com.example.sqlite.databinding.ListItemBinding
+import com.example.sqlite.db.dto.CountryEntity
 
 class CountryAdapter(
     private val list: MutableList<DataModel>, private val context : Context?, private val listener: RvOnclickListener
@@ -25,6 +26,7 @@ class CountryAdapter(
         }
     }
 
+
     inner class CountryViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root){
             fun bindItem(item: DataModel){
@@ -35,18 +37,13 @@ class CountryAdapter(
                     tvCountryNative.text = item.native ?: "Native not add"
                     tvCountryCurrency.text = item.currency ?: "Currency not add"
                     tvCountryLanguage.text = item.language ?: "Language not add"
-//                    if(item.capital.isNotEmpty()){ tvCountryCapital.text = item.capital}
-//                    if(item.region.isNotEmpty()){ tvCountryRegion.text = item.region}
-//                    if(item.native.isNotEmpty()){ tvCountryNative.text = item.native}
-//                    if(item.currency.isNotEmpty()){ tvCountryCurrency.text = item.currency}
-//                    if(item.language.isNotEmpty()){ tvCountryLanguage.text = item.language}
                 }
                 binding.buttonAddDetailsToDb.setOnClickListener {
-                    listener.onClick(item.countryId)
+                    listener.onClick(item.countryId, item.name)
                 }
             }
         }
     interface RvOnclickListener{
-        fun onClick(id: Int)
+        fun onClick(id: Int, name: String)
     }
 }

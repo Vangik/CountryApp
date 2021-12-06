@@ -1,61 +1,65 @@
 package com.example.sqlite.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.sqlite.MainActivity
 import com.example.sqlite.R
 import com.example.sqlite.databinding.FragmentDetailsBinding
-import com.example.sqlite.db.CountryDbManager
 import com.example.sqlite.model.DataModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private lateinit var binding: FragmentDetailsBinding
-    private var dbManger: CountryDbManager? = null
     private var countryId: Int? = null
-    private var details: DataModel? = null
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailsBinding.bind(view)
-        dbManger = context?.let { CountryDbManager(it) }
-        dbManger?.openDb()
-        setText()
+        setHints()
+
+        binding.sharePrefButton.setOnClickListener { sharePref()}
         binding.backButton.setOnClickListener { backClick() }
-        binding.updateButton.setOnClickListener { updateDb() }
+        binding.updateButton.setOnClickListener { updateCountryDetails() }
     }
 
-    private fun setText() {
+    private fun setHints() {
         countryId = arguments?.getInt("countryId")
-        details = countryId?.let { dbManger?.readDbGetDetails(it) }
-        with(binding) {
-            tvCountryName.text = details?.name
-            etCapital.hint = details?.capital ?: "Capital not add"
-            etRegion.hint = details?.region ?: "Region not add"
-            etNative.hint = details?.native ?: "Native not add"
-            etCurr.hint = details?.currency ?: "Currency not add"
-            etLang.hint = details?.language ?: "Language not add"
-        }
+        (context as MainActivity).db.countryDao().getCountryNameById(countryId!!)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                with(binding) {
+                    binding.tvCountryName.text = it.name
+                    etCapital.hint = it.capital ?: "Capital not add"
+                    etRegion.hint = it.region ?: "Region not add"
+                    etNative.hint = it.test ?: "Native not add"
+                    etCurr.hint = it.currency ?: "Currency not add"
+                    etLang.hint = it.language ?: "Language not add"
+                }
+            }, {
+
+            })
     }
 
-    private fun updateDb() {
-        dbManger?.updateDetails(
-            with(binding) {
-                DataModel(
-                    countryId!!, "",
-                    etCapital.editableText.returnNullOrText() ?: etCapital.hint.toString(),
-                    etRegion.editableText.returnNullOrText() ?: etRegion.hint.toString(),
-                    etNative.editableText.returnNullOrText() ?: etNative.hint.toString(),
-                    etCurr.editableText.returnNullOrText() ?: etCurr.hint.toString(),
-                    etLang.editableText.returnNullOrText() ?: etLang.hint.toString()
-                )
-            }
-        )
+    private fun updateCountryDetails() {
+        with(binding) {
+            (context as MainActivity).db.countryDao().updateDetails(
+                countryId,
+                etCapital.editableText.returnNullOrText() ?: etCapital.hint.toString(),
+                etRegion.editableText.returnNullOrText() ?: etRegion.hint.toString(),
+                etCurr.editableText.returnNullOrText() ?: etCurr.hint.toString(),
+                etLang.editableText.returnNullOrText() ?: etLang.hint.toString(),
+                etNative.editableText.returnNullOrText() ?: etNative.hint.toString()
+                ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({})
+        }
         Toast.makeText(context, "Details updated", Toast.LENGTH_SHORT).show()
     }
 
@@ -69,5 +73,20 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         }
         return this.toString()
     }
+    private fun sharePref(){
+        val text = binding.etSharePref.text
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        with(sharedPref!!.edit()){
+            putString("name_key", text.toString())
+            apply()
+        }
+        setText()
+    }
 
+    private fun setText(){
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        val sharedId = sharedPref?.getInt("id_key",0)
+        val name = sharedPref?.getString("name_key","default")
+        binding.tvSharePref.text = name
+    }
 }
